@@ -1,0 +1,378 @@
+\documentclass[12pt]{article}
+\usepackage[total={6.5in, 9in}]{geometry}
+%\usepackage{changepage}
+\usepackage{graphicx}
+\usepackage{polyglossia,fontspec,xunicode}
+\usepackage{libertine}
+\setmainlanguage{latin}
+\usepackage[series={A,B,C},noend,noeledsec,noledgroup]{reledmac}
+\usepackage[]{setspace}
+\AtBeginDocument{\doublespacing}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+%\chead{IN EINHARDI VITA CAROLI MAGNI}
+\fancyhead[C]{IN EINHARDI VITAM CAROLI MAGNI}
+\fancyhead[R]{}
+\renewcommand{\headrulewidth}{0pt}
+
+% TOC and section title options
+\usepackage{tocloft}
+\renewcommand{\cfttoctitlefont}{\large\centering}
+\usepackage{titletoc, titlesec}
+\titleformat{\section}{\normalsize\centering}{}{0em}{\hspace*{-1em}}
+\titlecontents{section}[0em]{\hangindent1.5em\vspace{0.6em}\normalfont\relax}{\contentslabel[\relax]{0em}}{}{\hfill\contentspage}
+
+% footnotes
+\Xarrangement[A]{paragraph}
+\Xarrangement[C]{twocol}
+\Xcolalign{\justifying}
+\makeatletter
+	\Xbhooknote{\setstretch {\setspace@singlespace}}
+	\Xbhookgroup{\setstretch {\setspace@singlespace} \setlength{\parindent}{0pt}}
+\makeatother
+
+% footnote spacing
+%\renewcommand*{\thefootnote}{\fnsymbol{footnote}}
+%\afternoteX[A]{-10pt}
+%\beforenotesX[A]{-5pt}
+\Xbeforenotes[A]{15pt}
+\Xbeforenotes[B]{7pt}
+\Xbeforenotes[C]{6pt}
+\Xafterrule[A]{3pt}
+\Xafterrule[B]{2pt}
+\Xafterrule[C]{1pt}
+\Xmaxhnotes[A]{.9\textheight}
+\Xmaxhnotes[B]{.9\textheight}
+\Xmaxhnotes[C]{.9\textheight}
+\newcommand{\myindent}{\hspace*{12pt}}
+
+% bold lemmata
+\Xlemmadisablefontselection[A]
+\Xlemmafont[A]{\bfseries}
+\Xlemmadisablefontselection[B]
+\Xlemmafont[B]{\bfseries}
+\Xlemmadisablefontselection[C]
+\Xlemmafont[C]{\bfseries}
+
+
+%---------------------------------------------------
+%                      DOCUMENT
+%---------------------------------------------------
+
+% TITLE PAGE
+\newcommand*{\titlepg}{\begingroup
+	\centering
+	\pagenumbering{gobble}
+	\thispagestyle{empty}
+	\vspace*{\baselineskip}
+	
+	\rule{\textwidth}{1.6pt}\vspace*{-\baselineskip}\vspace*{2pt}
+	\rule{\textwidth}{0.4pt}\\[\baselineskip]
+	
+	{\Large EXCERPTA EX EINHARDI\\[0.6\baselineskip] \Huge VITA CAROLI MAGNI\\[0.9\baselineskip] \large QUIPPE QUI ESSET\\[0.2\baselineskip] ECCLESIAE FAUTOR NOVUSQUE IMPERATOR\\[0.6\baselineskip] \Large VIZ. CAPITA XXVII. — XXIX.\\[0.4\baselineskip] \normalsize ALIQUOT ALIIS FONTIBUS ILLUSTRATA}\\[0.6\baselineskip]
+	
+	\rule{\textwidth}{0.4pt}\vspace*{-\baselineskip}\vspace{3.2pt}
+	\rule{\textwidth}{1.4pt}\\
+	\vspace*{2\baselineskip}
+	
+	\scshape
+	Quae annotationibus instruxit \\[\baselineskip]
+	{\Large PHILIPPUS VOGEL\par}
+	\vspace*{2\baselineskip}
+	Quem monuit\\[0.2\baselineskip]
+	Multisque de corrigendis certiorem fecit\\[\baselineskip]
+	{\Large TERENTIUS TUNBERG\par}
+	\vfill 
+	
+	\setlength{\fboxsep}{2pt}
+	\setlength{\fboxrule}{1pt}
+	\fbox{\includegraphics[width=1.7cm]{InstitutumLogo.png}}\\[0.5\baselineskip]
+	{\itshape apud Institutum Studiis Latinis Provehendis\par}
+	\vspace*{2\baselineskip}
+	\LARGE Lexingtoniae\\[0.3\baselineskip]
+	\large anno MMXV edita.
+	\clearpage
+\endgroup}
+
+
+% PREFACE PAGE
+\newcommand*{\prefpg}{\begingroup
+	\begin{center}
+		\vspace*{0.5em}
+		{\large BENEVOLO LECTORI S. P. D.\\}
+		{\small Philippus Vogel apud Institutum Studiis Latinis Provehendis discipulus}
+	\end{center}
+	\singlespacing
+	\vspace{-10pt}Capita ex Einhardi Vita Caroli Magni excerpta hoc libello inclusa, multa indicia praebent de modis quibus Carolus ecclesiae faverit et titulum imperatoris Romanorum acceperit. De subsidiis, quibus haec capita instructa sunt, mox, nunc de vita Caroli opere Einhardi descripta pauca dicam.
+	
+	Einhardi opusculum praebet conspectum satis amplum cum de regno tum de eius vita privata. Primum tamen de Caroli gente Einhardus disserit, videlicet de modo quo haec gens potestate gradatim aucta tandem regnum adepta est, cui regno Carolus patre mortuo successit anno 768\textsuperscript{o} (cap. 1–3). Reliquam vitam Einhardus ita disposuit `ut, primo res gestas et domi et foris, deinde mores et studia eius, tum de regni administratione et fine narrando, nihil de his quae cognitu vel digna vel necessaria sunt' praetermitteret (cap. 4). Describit itaque bella quibus Carolus multas gentes in suam dicionem redegit (cap. 6–15), aliquot opera publica quibus regnum suum Carolus adornavit (cap. 16–17), eius vitam privatam et studia (cap. 18–27), imperatoris titulum exeunte anno 800\textsuperscript{o} acceptum et Caroli insequentia facta (cap. 28–29), et eius mortem anno 814\textsuperscript{o} (cap. 30-33).
+	
+	Est autem arcta coniunctio inter Caroli studia operaque quae ad religionem Christianam pertinent (cap. 26–27), et titulum imperatoris Romanorum a Carolo acceptum, quem nexum annotationibus et supplementis huius libelli fretus lector, ut spero, poterit manifestum videre.
+	
+	Sub Einhardi operis contextu sunt tres series annotationum: in suprema tironibus destinata, vocabula rariora et constructiones grammaticae insolitae explanantur, lineolis supra vocales productas positis tironum causa: media in serie aliquot verba et constructiones cautius inspiciuntur: ima denique series de rebus ipsis ab Einhardo narratis agitur.
+	
+	Tria supplementa contextui subiuncta sunt, videlicet duae epistulae et aliquot parva excerpta historica, quo ampliorem conspectum lector habeat de Caroli studio Christianae religionis et de consiliis rebusque gestis quae pertinent ad titulum imperatoris ab eo acceptum. Tironibus erunt difficiliora haec supplementa paucis et simplicibus annotationibus instructa, sed spero fore ut plus boni capiatur ex verbis ipsius qua Carolus vixit aetatis quam ex meis.
+	
+	Quae omnia, `cui scribendae atque explicandae non meum ingeniolum, quod exile et parvum, immo paene nullum est, sed Tullianam par erat desudare facundiam,' tibi, lector, committo et tuae mando fidei.
+	\vfill
+	\tableofcontents
+	\vfill
+	\clearpage
+\endgroup}
+
+% BIBLIOGRAPHY
+\newcommand*{\bibpg}{\begingroup
+	\clearpage
+	\normalsize
+	\section[CONSPECTUS FONTIUM]{\large CONSPECTUS FONTIUM}
+	\begin{list}{}{
+		\setlength{\topsep}{0pt}
+		\setlength{\leftmargin}{0.2in}
+		\setlength{\listparindent}{-0.2in}
+		\setlength{\itemindent}{-0.2in}
+		\setlength{\parsep}{\parskip}
+	}
+	\item[]
+	\textit{Annales Regni Francorum Inde Ab A. 741. Usque Ad A. 829}. Ed. Georg Heinrich Pertz et Fredericus Kurze. Hannoverae: Bibliopolii Hahniani.
+	\item[]
+	\textit{Capitularia Regum Francorum}, Tomus I. 1883. Ed. Alfredus Boretius. Apud \textit{Monumenta Germaniae Historica}, Legum Sectio II. Hannoverae: Bibliopolii Hahniani.
+	\item[]
+	Einhardus. 1911. \textit{Einhardi Vita Caroli Magni}. Ed. Oswald Holder-Egger, Georg Waitz, Georg Heinrich Pertz. Hannoverae: Bibliopolii Hahniani.
+	\item[]
+	Einhardus. 1972. \textit{Vita Karoli Magni: The Life of Charlemagne}.Ed. Evelyn Scherabon Firchow et Edwin H. Zeydel. Coral Gables: University of Miami Press.
+	\item[]
+	\textit{Epistolae Karolini Aevi}, Tomus II. 1895. Ed. Ernestus Duemmler et Societas Aperiendis Fontibus Rerum Germanicarum Medii Aevi. Apud \textit{Monumenta Germaniae Historica}, Epistolarum Tomus IV. Berolini: Weidmanni.
+	\item[]
+	\textit{Le Liber Pontificalis: Texte, Introduction et Commentaire}, Tomus II. 1892. Ed. L'Abbé L. Duchesne. Paris: Ernest Thorin.
+	\item[]
+	Sidwell, Keith. 1995. \textit{Reading Medieval Latin}. Cambridge: Cambridge University Press.
+	\item[]
+	Collins, Roger. `Charlemagne's Imperial Coronation and the \textit{Annals of Lorsch}.' In \textit{Charlemagne: Empire and Society}, 2005, ed. Joanna Story, 52–70. Manchester: Manchester University Press.
+	\end{list}
+	\vspace*{\baselineskip}
+	\begin{center}
+		{\large FONTES IMAGINUM}
+	\end{center}
+	\begin{list}{}{
+		\setlength{\topsep}{0pt}
+		\setlength{\leftmargin}{0.2in}
+		\setlength{\listparindent}{-0.2in}
+		\setlength{\itemindent}{-0.2in}
+		\setlength{\parsep}{\parskip}
+	}
+	\item[]
+	Basilica Aquisgrani sita: <https://commons.wikimedia.org/wiki/File:Aachen\_Dehio\_1887.jpg>
+	\item[]
+	Basilica Sancti Vitalis: <https://hughellwood.wordpress.com/events/ravenna/>
+	\item[]
+	Basilica Sancti Petri: <http://touristdreamed.blogspot.com/2015/01/st-peters-basilica-vatican-city.html>
+	\end{list}
+\endgroup}
+
+
+
+\begin{document}
+	{\setstretch{1.0}
+		\titlepg
+		\renewcommand{\contentsname}{\centering CONSPECTUS\\ \normalsize\hspace{1.5in} EORUM QUAE IN HOC LIBELLO CONTINENTUR}
+		\prefpg
+	}
+	\thispagestyle{plain}
+	\section[EX EINHARDI VITA CAROLI MAGNI CAPITA XXVII.—XXIX.]{\large EX EINHARDĪ VĪTĀ CAROLĪ MAGNĪ}
+	\pagenumbering{arabic}
+	\beginnumbering
+	\pstart
+	\noindent
+	26. \textit{<Dē Carolī in ecclēsiam favōre.>} \edtext{Religiōnem Chrīstiānam, quā ab īnfantiā
+		\edtext{fuerat imbūtus}{\Afootnote{erat imbūtus.}}
+		sānctissimē et
+		\edtext{cum summā pietāte}{\Afootnote{\textit{vel} summā pietāte. Vide praeceptum 270\textsuperscript{um} apud Bradley \& Arnold.}}
+		coluit}{\lemma{Religiōnem \dots\ coluit}\Cfootnote{Hoc in capite Einhardus, ut saepe alibi, Suetonium imitatur. Cf. Aug. 93: `caerimoniarum [...] veteres ac praeceptas reventissime coluit.'}},
+	ac propter hoc plūrimae pulchritūdinis
+		\edtext{basilicam Aquisgrānī}{\Cfootnote{Ecce hoc aedificium imaginibus descriptum.
+		\newline\begin{center}\vspace{-10pt}\includegraphics[width=6cm]{aachen.jpg}\\\end{center}
+		\vspace{-8pt}Basilicae sunt delubra eiusdem formae et nominis atque aedificia publica Romana, in quibus iudicia et nundinae agebantur: quod nomen provenit ex βασιλική στοά, quod Graecis erat simile aedificium.\\
+		\includegraphics[width=7.2cm]{vitale.png}\\
+		Hac in imagine descriptum est aliud aedificium huius generis, h.e. basilica Sancti Vitalis, Ravennae sita. Carolus basilica Aquisgrani aedificanda imitatus est hanc et alias similes basilicas.\\
+		\myindent Cf. cap. 17: `Qui cum tantus in ampliando regno et subigendis exteris nationibus existeret et in eiusmodi occupationibus assidue versaretur, opera tamen plurima ad regni decorem et commoditatem pertinentia diversis in locis incohavit, quaedam etiam consummavit. Inter quae praecipua fere non inmerito videri possunt basilica sanctae Dei genitricis Aquisgrani opere mirabili constructa.'\\
+		\myindent Multas aedes sacras Carolus exstruxit vel refecit: `Octingentas et octuaginta sex ecclesias suis propriis sumptibus cum supellectilibus et aliis ornamentis ad laudem Dei beateque virginis dedicavit, tria millia et septingentas in toto orbe restauravit’ (Einhardus ed. Holder-Egger (1911: 31)).}}
+	exstrūxit aurōque et argentō et
+		\edtext{lūmināribus}{\Afootnote{\textit{lūmināria, ium:} lucernae dēlūbrum adōrnantēs.}\Bfootnote{\textit{(apud classicos)} aedium foriculae et fenestrae; \textit{(alibi apud posteriores)} lumina caelestia. `Fecitque Deus duo magna luminaria luminare maius ut praeesset diei et luminare minus ut praeesset nocti' (Vulg. Gen. 1:16).}}
+	atque ex aere solidō
+		\edtext{cancellīs}{\Afootnote{\textit{cancellī, ōrum:} sēptum ex ferrīs trānsversīs, quō altāria circumdārī solēbant.}}
+	et iānuīs adōrnāvit. Ad cuius strūctūram cum columnās et marmora aliunde habēre nōn posset, Rōmā atque Rāvennā dēvehendā cūrāvit.
+		\edtext{Ecclēsiam}{\Bfootnote{\textit{(apud posteriores)} aut, sicut hic, sacra aedis vel delubrum, h.e. aedificium in quo sacra aguntur, aut coetus Christianorum universe et generatim; provenit ex ἐκκλησία, h.e. congressus, quod verbum Graecum aliquoties apud classicos Latinos adhibitum est sensu antiquiore, e.g. `bule et ecclesia consentiente' (Plin. ep. Traj. 111).}}
+	et manē et vesperē, item nocturnīs hōrīs et
+		\edtext{sacrificiī tempore}{\Afootnote{\textit{sacrificium, ī:} sancta missa.}},
+	quoad eum valētūdō permīserat, impigrē frequentābat, cūrābatque magnopere, ut omnia quae in eā gerēbantur cum quā maximā fierent honestātē,
+		\edtext{aedituōs}{\Afootnote{\textit{aedituus, ī:} custōs cuius officium erat dēlūbrum curāre et facere ut hominēs regulīs parērent.}}
+	crēberrimē commonēns, nē quid indecēns aut sordidum aut īnferrī aut in eā remanēre permitterent. Sacrōrum vāsōrum
+		\edtext{ex aurō et argentō}{\Afootnote{quae ex aurō et argentō facta sunt.}}
+	vestīmentōrumque sacerdōtālium tantam in eā cōpiam prōcūrāvit, ut in sacrificiīs	celebrandīs nē
+		\edtext{iānitōribus}{\Afootnote{\textit{iānitor -ōris:} minister īnfimī clēricōrum gradūs: etiam \textit{ōstiārātēs} vocābantur.}}
+	quidem, quī ultimī ecclēsiasticī ōrdinis sunt, prīvātō habitū ministrāre necesse
+		\edtext{fuisset}{\Afootnote{esset.}}.
+		\edtext{Legendī atque psallendī disciplīnam dīligentissimē ēmendāvit.}{\Cfootnote{Secundum sententias a Carolo expositas in eius epistola, quae vocatur \textit{De Litteris Colendis}, causae cur voluerit hanc disciplinam emendare erant variae: de quibus vide Supplementum A et annotationes subiunctas.\\
+		\myindent Carolus etiam voluit pueros litteris melius institui et libros sacros accuratius scribi, e.g. apud decreta quae vocantur \textit{Admonitio Generalis} (72): `Et ut scholae legentium puerorum fiant. Psalmos, notas, cantus, computum, grammaticam per singula monasteria vel episcopia et libros catholicos bene emendate; quia saepe, dum bene aliqui Deum rogare cupiunt, sed per inemendatos libros male rogant. Et pueros vestros non sinite eos vel legendo vel scribendo corrumpere; et si opus est evangelium, psalterium et missale scribere, perfectae aetatis homines scribant cum omni diligentia.'}}
+		\edtext{Erat enim utriusque admodum ērudītūs}{\Cfootnote{Cf. cap. 25: `Erat eloquentia copiosus et exuberans poteratque quidquid vellet apertissime exprimere. Nec patrio tantum sermone contentus, etiam peregrinis linguis ediscendis operam impendit. In quibus Latinam ita didicit, ut aeque illa ac patria lingua orare sit solitus, Grecam vero melius intellegere quam pronuntiare poterat. Adeo quidem facundus erat, ut etiam dicaculus appareret. Artes liberales studiosissime coluit, earumque doctores plurimum veneratus magnis adficiebat honoribus, \textit{<etc.>}'}},
+	quamquam ipse nec pūblicē legeret nec nisi submissim et
+	\edtext{in commūne}{\Afootnote{commūniter, nempe inter sacram missam.}}
+	cantāret.
+	\pend
+	\pstart
+	27. \textit{<Dē Carolī ergā pauperēs līberālitāte.>}
+		\edtext{Circā pauperēs sustentandōs}{\Afootnote{Dē auxiliīs pauperibus datīs.}}
+	et grātuītam līberālitātem, quam Graecī
+		\edtext{eleēmosynam}{\Afootnote{\textit{eleēmosyna, ae,} ἐλεημοσύνη (ab ἐλεήμων \textit{misericors}): stips vel beneficium pauperibus datum, aut (sīcut hīc) cōnsuetūdō stipis dandae.}}
+	vocant, dēvōtissimus,
+		\edtext{ut quī nōn in patriā sōlum et in suō rēgnō id facere cūrāverit, vērum trāns maria in Syriam et Aegyptum atque Āfricam,
+		\edtext{Hierosolymīs}{\Afootnote{\textit{Hierosolymīs:} cāsū locātīvō, ā nōmine quod est \textit{Hierosolyma, ōrum}.}},
+		Alexandrīae atque Carthāginī, ubi Chrīstiānōs in paupertāte vīvere compererat, pēnūriae illōrum
+		\edtext{compatiēns}{\Afootnote{compatiōr + \textit{gen.} (cf. miseret + \textit{acc.} + \textit{gen.})}}
+		pecūniam mittere solēbat}{\lemma{ut quī \dots\ cūrāverit \dots\ solēbat}\Bfootnote{Duo sensus hic commiscentur: altero sensu ambo verba temporalia relativa et causales adhibentur, h.e. \textit{quippe qui \dots\ curaverit \dots\ solitus sit}, altero sensu posterius verbum temporale quasi apodosis adhibitur post protasin, h.e. \textit{ubi \dots\ compererat, \dots\ solebat}. Quam ob permixtionem modus coniunctivus in altero verbo, in altero modus indicativus adhibitus est.}},
+	ob hoc maximē trānsmarīnōrum rēgum amīcitiās expetēns, ut Chrīstiānīs sub eōrum dominātū dēgentibus
+		\edtext{refrīgerium}{\Afootnote{cōnsolātiō.}\Bfootnote{\textit{(proprie)} actus refrigerandi, h.e. faciendi ut aliquid calidum fiat frigidum; \textit{(translato sensu, et hic)} solatio, levamen, recreatio. `Transivimus per ignem et aquam, et eduxisti nos in refrigerium' (Vulg. Psal. 65:12).\\
+		\myindent Hoc verbum etiam adhibebatur ad epulas indicandas quae a Romanis sollemnes iuxta sepulcra celebrabantur, quem ritum Christiani diu servaverunt: Augustini tempore Mediolani agebantur sub nomine \textit{laetitiae} (Conf. 6.2.2, 6.6.9).\\
+		\myindent Erant qui eo tempore credebant \textit{refrigerium sanctorum} esse locum amoenum ubi Christiani post mortem exspectabant diem quo omnes iudicarentur, quae sententia provenit ex mentione \textit{sinus Abrahae} (Vulg. Luc. 16:22-23). Sed etiam \textit{refrigerium sanctorum} hic et illic sensu magis solito adhibitum est, e.g. Ambr. Comment. in 1 Cor. 16:4.}}
+	aliquod ac relevātiō prōvenīret. 
+	\pend
+	\pstart
+	\textit{<Quae beneficia ecclēsiae Rōmānae dederit.>} Colēbat prae cēterīs sacrīs et venerābilibus locīs
+		\edtext{apud Rōmam}{\Afootnote{Rōmae.}}
+		\edtext{ecclēsiam beātī Petrī apostolī}{\Cfootnote{\newline\begin{center}\vspace{-8pt}\includegraphics[width=6cm]{stpeters.png}\\\end{center}
+		\vspace{-8pt}Hoc delubrum, tempore Constantini imperatoris aedificatum, saeculo 16\textsuperscript{o} solo aequatum est ut novum delubrum eius loco aedificaretur.}},
+	in cuius dōnāria magna vīs pecūniae tam in aurō quam in argentō necnōn et gemmīs ab illō congesta est. Multa	et innumera pontificibus mūnera
+		\edtext{missa}{\Afootnote{missa sunt}}.
+	Neque ille tōtō rēgnī suī tempore quidquam
+		\edtext{dūxit antīquius}{\Afootnote{\textit{antīquius aliquid dūcere, habēre, .:} maiōris mōmentī aliquid exīstimāre.}\Bfootnote{cf. Suet. Vespas 8: `ac per totum imperii tempus nihil habuit antiquius.'}},
+	quam ut urbs Rōmā suā operā suōque labōre vetere pollēret auctōritāte, et ecclēsia sānctī Petrī
+		\edtext{per illum}{\Afootnote{ab illō.}}
+	nōn sōlum tūta ac dēfēnsa, sed etiam suīs opibus prae omnibus ecclēsiīs esset ōrnāta atque dītāta. Quam
+		\edtext{cum tantī penderet}{\Afootnote{\textit{tantī aliquid pendere} (gen. aestimātiōnis): tam cārum existimāre.}},
+	tamen intrā XLVII annōrum, quibus rēgnāverat, spatium
+		\edtext{quater tantum
+		\edtext{illō}{\Afootnote{\textit{illō [locō]}, h.e. Rōmam.}}
+		vōtōrum solvendōrum ac supplicandī causā profectus est}{\lemma{quater tantum illō [\dots] profectus est}\Cfootnote{Carolus Romam se contulit anno 774\textsuperscript{o} dum urbs Ticinum (quod nunc vulgo \textit{Pavia} vocatur) obsidebatur, anno 781\textsuperscript{o} cum filii Pepinus et Ludovicus reges fierent, Pascua anni 787\textsuperscript{i} Hadriani I hospes, et anno 800\textsuperscript{o} exeunte, cum aliquot menses Romae maneret, et cum imperator factus esset, de quo plura mox.}}.
+	\pend
+	\pstart
+	28. \textit{<Quōmodo Carolus imperiālī titulō exōrnātus sit.>} Ultimī adventūs
+		\edtext{suī}{\Afootnote{eius, nempe Carolī.}}
+	nōn sōlum hae fuēre causae, vērum etiam quod
+		\edtext{Rōmānī Leōnem pontificem multīs affectum iniūriīs, ērutīs scīlicet oculīs linguāque amputātā}{\lemma{Rōmānī Leōnem \dots\ linguāque amputātā}\Cfootnote{Die 25\textsuperscript{o} mensis Aprilis anni 799\textsuperscript{i} asseclae prioris pontificis Adriani I impetum fecerunt in Leonem III ut pontifex debilitatus officium deponere cogeretur . Quem pontificem vulneratum, quamquam nec reapse caecatum nec lingua privatum secundum sententiam historicorum nostrae aetatis, ex periculo eripuerunt milites iussu hominum qui vocabantur \textit{missi dominici}, qui quasi Caroli inquisitores ordinem et fidelitatem per totum imperium servabant. (Sunt autem fontes illius aetatis, e.g. \textit{Liber Pontificalis} et \textit{Annales Regni Francorum}, secundum quos Leo caecatus linguaque privatus in carcerem detrusus est, miraculo tamen Dei sanatus ex carcere effugit. Vide excerpta ex illis duobus operibus in Supplemento C affixa. Et exstat carmen nomine \textit{Karolus Magnus et Leo Papa}, ex quo locus ad hunc locum pertinens invenitur apud Sidwell (1995: 144-148) discriptus et annotationibus instructus.) Leo denique ad Caroli castra Padrabrunni (vulgo \textit{Paderborn}) posita aufugit. Tum Romam mense Novembri pontifex revertit Caroli militibus comitatus, plures tamen difficultates passus est nec potuit efficere ut inimici sui auferrentur, usque dum Carolus ipse mense Novembri anni insequentis Romam venit. Leone absoluto, inimicis in exsilium depulsis, condiciones Romae paene duos annos turbatae tandem stabilitae sunt.}},
+		\edtext{fidem rēgis}{\Cfootnote{h.e. officium Caroli tamquam \textit{patricii Romanorum}, quem titulum acceperat anno 774\textsuperscript{o} ob auxilium pontifici datum contra Lombardos dicionem pontificiam aggressos.}}
+	implōrāre compulērunt. Idcircō Rōmam veniēns
+		\edtext{propter reparandum, quī nimis conturbātus erat, ecclēsiae statum}{\lemma{propter reparandum \dots\ ecclēsiae statum}\Afootnote{h.e. propter statum ecclēsiae, quae reficī et firmārī dēbēbat. (Hīc verbum quod est \textit{reparandum} est gerundīvum.)}}
+	ibi tōtum hiemis
+		\edtext{tempus extrāxit}{\Afootnote{tempus dēgit.}}.
+	Quō tempore
+		\edtext{imperātōris et augustī nōmen}{\Cfootnote{Carolus anno 800\textsuperscript{o} nominatus \textit{Imperator Augustus} et eius successores imperio praeerant quod vocabatur \textit{Romanum}. Imperator regni Romani non exstiterat inde a regno Romuli Augustuli, qui officium imperatoris deposuit anno 476\textsuperscript{o}. Ipse Carolus solebat in epistulis suis inde ab anno 801\textsuperscript{o} adhibere titulum qui est \textit{Karolus serenissimus Augustus a Deo coronatus magnus pacificus imperator Romanum gubernans imperium}.\newline
+		\indent Otto II (regn. 973-983) se vocabat \textit{Imperatorem Augustum Romanorum}. Anno 1157\textsuperscript{o} Fredericus I, qui \textit{Aenobardus} vocabatur propter barbam rubram, imperium nominavit etiam \textit{sacrum}. Mentio nominis ambobus adiectivis praediti, quod est \textit{sacrum Romanum imperium}, reperta est anno 1254\textsuperscript{o} facta.}}
+	accēpit. Quod
+		\edtext{prīmō
+		\edtext{in tantum}{\Afootnote{tantō, adeō.}}
+		āversātus est}{\Cfootnote{Carolus imperator factus est non prorsus ex inopinato. Nam reges Francorum saeculo 800\textsuperscript{o} nexu magis magisque arcto cum pontifice fruebantur: iurabant se pontificem defensuros atque adiuvaturos inde ab anno 753\textsuperscript{o}, et anno 798\textsuperscript{o} Leo III coepit uti ratione calendaria quae in Caroli regno adhibebatur. Eodem tempore imperatores Constantinopolitani antea Romae culti minus in dies valebant apud pontifices: post imperium Philippici Bardanis (regn. 711-713)  a Constantino pontifice quasi haeretici condemnati, reges Francorum coeperunt Romae coli eisdem signis atque imperatores Constantinopolitani antea colebantur, et pontifices coeperunt eodem saeculo nuntiare suum officium acceptum non iam imperatoribus sed regibus Francorum (Firchow \& Zeydel 1972: 135-136).\\
+		\myindent Secundum, alii fontes discrepant cum narratione Einhardi admodum brevi. Carolus non ubique apertis verbis describitur miratus ac vexatus esse propter hunc eventum velut inopinatum. Secundum \textit{Annales Laureshamenses}, Carolus statim post adventum suum Romam (h.e. exeunte mense Novembri) inter congressum cum episcopis collocutus est de imperatoris titulo quem mox sumpturus erat, et, non consilii ignarus, imperator factus est (Collins 2005).\\
+		\myindent Tertium, ex monitu satis aperto epistula Alcuini ad Carolum anno 799\textsuperscript{o} missa incluso, qui agitur de inopia gentium Christianarum sine imperatore, licet suspicari Carolum in mente habuisse titulum imperatoris antequam Romam anno 800\textsuperscript{o} advenerit.}},
+	ut affirmāret sē eō diē, quamvīs
+		\edtext{praecipua fēstīvitās}{\Afootnote{diēs Chrīstī nātālis.}}
+	esset, ecclēsiam nōn intrātūrum, sī pontificis cōnsilium praescīre potuisset. Invidiam tamen susceptī nōminis,
+		\edtext{Rōmānīs imperātōribus super hoc indignantibus}{\Cfootnote{h.e. imperii Romani orientalis, cuius caput erat Constantinopolis. Anno 812\textsuperscript{o} imperator Constintanopolitanus Michael I concessit Carolum esse imperatorem, sed non imperatorem Romanorum, nam hunc titulum proprium esse imperatoris Constintanopolitani Caesarum antiquorum heredis.}},
+	magnā tulit patientiā. Vīcitque eōrum contumāciam magnanimitāte, quā eīs procul dubiō longē praestantior erat,
+		\edtext{mittendō ad eōs crēbrās lēgātiōnēs et in epistulīs frātrēs eōs appellandō}{\lemma{mittendō \dots\ appellandō}\Bfootnote{Gerundia modi. Constructio gerundivi apud classicos saepius invenitur, h.e. \textit{crebris legationibus ad eos mittendis}. (Vide praeceptum 385\textsuperscript{um} apud Bradley \& Arnold.) Loco alterius tamen gerundii gerundivum non item adhibendum est, ne ambiguitas oriatur.}}.
+	\pend
+	\endnumbering
+	
+	% APPENDICES (SUPPLEMENTA)
+	\clearpage
+	{\setstretch{1.0}\small
+		\section{SUPPLEMENTUM A: DE LITTERIS COLENDIS}
+		\beginnumbering
+		\pstart
+		\noindent
+		\edtext{Karolus gratia Dei rex Francorum et Langobardorum ac patricius Romanorum, Baugulfo abbati et omni congregationi, tibi etiam commissis fidelibus oratoribus nostris in omnipotentis Dei nomine amabilem direximus salutem.}{\lemma{Karolus \dots\ salutem}\Afootnote{Haec epistula, intra annum 780\textsuperscript{um} et 800\textsuperscript{um} scripta, invenitur apud \textit{Epistolas Karolini Aevi II.} (1895). Variae causae a Carolo hic proponuntur cur clerici debeant melius litteris Latinis erudiri, inter quas sunt:
+			\textbf{(1)} ut sermo conveniat cum vita recte ordinata (vv. 5–9),
+			\textbf{(2)} ut recte sciendo homines recte agant (vv. 10),
+			\textbf{(3)} ne Deus laudetur sermone inculto (vv. 10–12),
+			\textbf{(4)} ne sermone mendoso homines veritatem detorqueant (vv. 13–19),
+			\textbf{(5)} quo accuratius litterae sacrae intellegantur (vv. 19–27),
+			\textbf{(6)} ut alii hac scientia erigantur in Dei laudem (vv. 29-33).}}
+	Notum igitur sit Deo placitae devotioni vestrae, \edtext{quia}{\Afootnote{quod.}} nos una cum fidelibus nostris consideravimus utile esse, ut episcopia et monasteria nobis Christo propitio ad gubernandum commissa praeter regularis vitae ordinem atque sanctae religionis \edtext{conversationem}{\Afootnote{modum vitae.}}, etiam in litterarum meditationibus eis, qui donante Domino discere possunt, secundum uniuscuiusque capacitatem discendi studium debeant impendere, \edtext{qualiter}{\Afootnote{ita ut.}}, sicut regularis norma honestatem morum, ita quoque docendi et discendi instantia ordinet et ornet seriem verborum, ut, qui Deo placere appetunt recte vivendo, ei etiam placere non neglegant recte loquendo. Scriptum est enim: \textit{aut ex verbis tuis iustificaberis, aut ex verbis tuis condemnaberis} <Matt. 12:37>. Quamvis enim melius sit bene facere quam nosse, prius tamen est nosse quam facere. Debet ergo quisque discere, quod optat implere, ut tanto uberius, quid agere debeat, intellegat anima, quanto in omnipotentis Dei laudibus sine mendaciorum offendiculis concurrerit lingua.
+		\pend
+		\pstart
+		Nam cum omnibus hominibus vitanda sint mendacia, quanto magis illi \edtext{secundum possibilitatem}{\Afootnote{quoad fieri possit.}} declinare debent, qui ad hoc solummodo probantur electi, ut servire specialiter debeant veritati. Nam cum nobis in his annis a nonnullis monasteriis saepius scripta dirigerentur, in quibus, \edtext{quod pro nobis fratres ibidem commorantes in sacris et piis orationibus decertarent}{\lemma{quod \dots\ decertarent}\Afootnote{\textit{quod} pro oratione obliqua.}}, significaretur, cognovimus in plurimis praefatis conscriptionibus eorundem et sensus rectos et sermones incultos; quia, quod pia devotio interius fideliter dictabat, hoc exterius propter neglegentiam discendi lingua inerudita exprimere sine reprehensione non valebat. Unde factum est, ut timere inciperemus, ne forte, sicut minor erat in scribendo prudentia, ita quoque et multo minor esset quam recte esse \edtext{debuisset}{\Afootnote{deberet.}}
+		\edtext{sanctarum scripturarum ad intellegendum sapientia}{\lemma{in \dots\ sapientia}\Afootnote{sapientia apta ad sacras litteras intellegendas.}}. Et bene novimus omnes, quia, quamvis periculosi sint errores verborum, multi periculosiores sunt errores sensuum.
+		\pend
+		\pstart
+		Quamobrem hortamur vos litterarum studia non solum non neglegere, verum etiam humillima et Deo placita intentione ad hoc certatim discere, ut facilius et rectius divinarum scripturarum mysteria valeatis penetrare. Cum enim in sacris paginibus schemata, tropi et cetera his similia inserta inveniantur, \edtext{nulli dubium est, quod ea unusquisque legens tanto citius spiritualiter intelligit, quanto prius in litteraturae magisterio plenius instructus fuerit}{\lemma{nulli dubium est, quod \dots\ intelligit \dots\ instructus fuerit}\Afootnote{nullum dubium est, quin \dots\ intellegat \dots\ instructus sit.}}. Tales vero ad hoc opus viri eligantur, qui et voluntatem et possibilitatem discendi et desiderium habeant alios instruendi. Et hoc tantum ea intentione agatur, qua devotione a nobis praecipitur. Optamus enim vos, sicut decet ecclesiae milites et interius devotos et exterius doctos castosque bene vivendo et scolasticos bene loquendo, ut, quicumque vos propter nomen Domini et sanctae conversationis nobilitatem ad videndum expetierit, sicut de aspectu vestro aedificatur visus, ita quoque de sapientia vestra, quam in legendo seu cantando perceperit, instruatur auditus et, qui ad videndum solummodo venerat, visione et auditione instructus omnipotenti Domino gratias agendo gaudens recedat.
+		\pend
+		\pstart
+		Huius itaque epistolae exemplaria ad omnes suffragantes tuosque coepiscopos et per universa monasteria dirigi non neglegas, si gratiam nostram habere vis.
+		\pend
+		\endnumbering
+		
+		\clearpage
+		\section{SUPPLEMENTUM B: DE CONSILIIS IMPERATORIS NOMINANDI:\\ EX ALCUINI EPISTULA AD CAROLUM MAGNUM}
+		\beginnumbering
+		\pstart
+		\noindent Domino pacifico \edtext{David regi Flaccus Albinus salutem}{\Bfootnote{Alcuinus erat scriptor qui apud Caroli curiam floruit, et qui solebat Carolum \textit{David} (viz. regem gentis Israelitae) et se \textit{Flaccum} (viz. Horatium) et \textit{Albinum} vocare. Hac in epistula, quae scripta est mense Iunii anni 799\textsuperscript{i}, postquam lamentatur casum Leonis III pontificem (de quo plura vide Supplementum C), Carolum numerat inter tres maximi momenti homines totius orbis terrarum (vv. 7-14), tum verbis ambiguis dicit Deum Carolo fideli praemium daturum (vv. 23-27), ex quo licet subaudire Caroli consilium tituli imperatoris petendi.}}. [\dots]
+		\pend
+		\pstart
+		Plurima vestrae venerandae dignitati praesens suaderem, si vel vobis opportunitas esset audiendi vel mihi eloquentia dicendi. Quia calamus caritatis cordis mei arcana instigare saepius solet de vestrae excellentiae porsperitate tractare; et de stabilitate regni vobis a Deo dati; et de profectu sanctae ecclesiae Christi. Quae multimoda improborum perturbata est nequitia et scelestis pessimorum ausibus maculata, non in personis tantum ignobilibus, sed etiam in maximis et altissimis. Quod metuendum est valde.
+		\pend
+		\pstart
+		Nam tres personae in mundo altissime hucusque fuerunt: id est apostolica sublimitas, quae beati Petri principis apostolorum sedem vicario munere regere solet; quid vero in eo actum sit, qui rector praefatae sedis fuerat, mihi veneranda bonitas vestra innotescere curavit. \edtext{Alia est imperialis dignitas et secundae Romae saecularis potentia: quam impie gubernator imperii illius depositus sit, non ab alienis, sed a propriis et concivibus, ubique fama narrante crebrescit.}{\lemma{Alia \dots\ crebrescit}\Bfootnote{Constantinus VI (reg. 776-797) imperator Constantinopolitanus anno 797\textsuperscript{o} excaecatus est ab asseclis ipsius matris Irenae, quae post eum regnavit. Constantinus paulo post hunc casum mortuus est.}} Tertia est regalis dignitas, in qua vos domini nostri Iesu Christi dispensatio rectorem populi Christiani disposuit, ceteris praefatis dignitatibus potentia excellentiorem, sapientia clariorem, regni dignitate sublimiorem. Ecce in te solo tota salus ecclesiarum Christi inclinata recumbit. Tu vindex scelerum, tu rector errantium, tu consolator maerentium, tu exaltatio bonorum.
+		\pend
+		\pstart
+		Nonne Romana in sede, ubi religio maxime pietatis quondam claruerat, ibi extrema impietatis exempla emerserunt? Ipsi, cordibus suis excaecati, excaecaverunt caput proprium. Nec ibi timor Dei, nec sapientia, nec caritas esse videtur; quid boni ibi esse poterit, ubi nihil horum trium invenitur? Si timor Dei esset in eis, non auderent; si sapientia, numquam voluissent; si caritas, nequaquam fecissent. Tempora sunt periculosa olim ab ipsa veritate praedicta, quia refrigescit caritas multorum.
+		\pend
+		\pstart
+		Nullatenus capitis cura omittenda est; levius est pedes dolere quam caput. [\dots] \textit{<Carolum hortatur ut cum Saxonibus pacem componat, quo facilius ecclesiae subveniat.>}
+		\pend
+		\pstart
+		Nihil horum tuam latere poterit sapientiam: utpote in sanctis scripturis vel saecularibus historiis te adprime eruditum esse novimus. Ex his omnibus plena tibi scientia data est a Deo, ut per te sancta Dei ecclesia in populo christiano regatur, exaltetur, et conservetur. Quanta tuae optimae devotioni merces exhibeatur a Deo, quis dicere poterit? Quia nec oculus vidit, nec auris audivit, nec in cor hominis ascendit quae praeparavit Deus diligentibus se.
+		\pend
+		\vskip 12pt
+		\pstart
+		\indent Mitis ab aetherio clementer Christus Olympo\newline
+		\indent Te regat, exaltat, defendat, ornet et amet.
+		\pend
+		\vskip 12pt
+		\pstart
+		\indent Mens mea congaudet, bonitas iam vestra fidelis\newline
+		\indent\indent Optime quod regem suscipit ipsa senem.\newline
+		\indent Haec, precor, aspiciat dementi lumine nostras\newline
+		\indent\indent Litterulas, scripsit quas pietatis amor.\newline
+		\indent Sidera sancta poli, viridis et gramina terrae,\newline
+		\indent\indent Omnia conclament: 'David ubique vale.'\newline
+		\indent Terra, polus, pelagus, homines, volucresque, feraeque\newline
+		\indent\indent Concordi clament voce: 'Valeto pater.'
+		\pend
+		\endnumbering
+		
+		\clearpage
+		\section{SUPPLEMENTUM C: DE PONTIFICIS CASU ET DE CAROLO IMPERATORE FACTO:\\ EX ANNALIBUS REGNI FRANCORUM ET EX LIBRO PONTIFICALI}
+		\textit{Hi duo fontes non multum discrepant quod attinet ad Leonem III et Carolum, sed quandoquidem {\normalfont Liber Pontificalis} apertis verbis narrat quo mirabili pacto Leo sanatus sit, et describit congressum qui habitus est post sex menses cum Leonis Romam reversus esset, duas paragraphos ex illo libro sermone mendoso excerpsi.}\\
+		
+		\beginnumbering
+		\pstart
+		\noindent[Ex \textit{Annalibus} 799.] Romani Leonem papam \edtext{Litania Maiore}{\Afootnote{Die 25\textsuperscript{o} mensis Aprilis, cum caerimonia Romae celebretur, quae et \textit{Litaniae Maiores} vocatur.}} captum excaecaverunt ac lingua detruncaverunt. Qui in custodia missus noctu per murum evasit et ad legatos domini regis, qui tunc apud basilicam sancti Petri erant, Wirundum videlicet abbatem et Winigisum Spolitinum ducem, veniens Spoletium est deductus. Dominus rex [\dots] \edtext{eodem in loco}{\Afootnote{Padrabrunni.}} Leonem pontificem summo cum honore suscepit ibique reditum Carli filii sui expectans Leonem pontificem simili, quo susceptus est, honore dimisit; qui statim Romam profectus est, et rex \edtext{Aquasgrani palatium suum}{\Afootnote{Aquisgranum ad eius palatium.}} reversus est.
+		\pend
+		\vskip 12pt
+		\pstart
+		\noindent[Ex \textit{Libro Pontificali} 371.] Et vere a tenebra eum Dominus eripiens lumen reddidit et linguam ad loquendum restituit, et totis eius solidavit membris, et in omnibus operibus mirabiliter deducens \edtext{confortavit}{\Afootnote{roboravit.}}. [\dots] Et in ipsa beati Petri apostoli aula coniungente praelatus pontifex, confestim \edtext{Winichis}{\Afootnote{Winichis \textit{(obiectum)}, <qui erat> etc.}}, gloriosus dux Spolitanus, cum \edtext{suo}{\Afootnote{eius.}} exercito obviavit. Et cum summum pontificem videntem et loquentem conspexisset, venerabiliter eum recipiens, \edtext{Spoletio}{\Afootnote{Spoletium.}} deduxit, glorificantem et laudantem Deum, qui \edtext{talem}{\Afootnote{talia.}} mirabilia in eum clarificavit. Quo audito, per diversas civitates Romanorum fideles ad eum occurrerunt; et pariter cum aliquibus ex ipsis civitatibus, \edtext{episcopi, presbyteri, seu clerici Romani et primati civitatibus}{\lemma{episcopi \dots\ civitatibus}\Afootnote{sive cum episcopis, sive presbyteris, sive clericis Romanis et primatis civitatum.}}, \edtext{apud}{\Afootnote{ad.}} excellentissimum dominum Carolum regem Francorum et Langobardorum atque patricium Romanorum profectus est. [\dots]
+		\pend
+		\pstart
+		Et alia die, secundum \edtext{olitanam}{\Afootnote{antiquam.}} consuetudinem, \edtext{natale beati Andreae apostoli}{\Afootnote{Die 30\textsuperscript{o} mensis Novembris.}} celebrantes, \edtext{Roma introeunte cum mole gaudio et laetitia in patriarchio Lateranense introivit}{\lemma{Roma \dots\ introivit}\Afootnote{Romam introiens magno gaudio et magna laetitia in palatium Lateranense introivit.}}. [\dots] \edtext{et per unam et amplius hebdamadem inquirentes ipsos nefandissimos malefactores qua malitia ab ipso ipsorum pontifice habuissent, tam Paschales quamque Campulus cum sequacibus eorum; et nihil habuerunt adversus eum quod dicerent. Tunc illos comprehendentes praedicti missi magni regis emiserunt eos Franciis.}{\lemma{et per unam \dots\ Franciis}\Afootnote{Sententia sermone insolito expressa est haec: homines qui impetum in Leonem fecerant coram congressu inquisiti in Franciam missi sunt.}}
+		\pend
+		\vskip 12pt
+		\pstart
+		\noindent[Ex \textit{Annalibus} 800-801.] Post VII vero dies rex, contione vocata, cur Romam venisset omnibus patefecit et exinde cottidie ad ea, quae venerat, facienda operam dedit. Inter quae vel maximum vel difficillimum erat, quod primum incohatum est, de discutiendis, quae pontifici obiecta sunt, criminibus. Qui tamen, postquam nullus probator criminum esse voluit, coram omni populo in basilica beati Petri apostoli evangelium portans ambonem conscendit invocatoque sanctae Trinitatis nomine iureiurando ab obiectis se criminibus purgavit. [\dots]
+		\pend
+		\pstart
+		Ipsa die sacratissima natalis Domini, cum rex ad missam ante confessionem beati Petri apostoli ab oratione surgeret, Leo papa coronam capiti eius imposuit, et a cuncto Romanorum populo acclamatum est: 'Carolo augusto, a Deo coronato magno et pacifico imperatori Romanorum, vita et victoria!' Et post laudes ab apostolico more antiquorum principum adoratus est atque allato patricii nomine imperator et augustus est appellatus.
+		\pend
+		\endnumbering
+		
+		\bibpg
+	}
+\end{document}
