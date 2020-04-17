@@ -1,0 +1,1316 @@
+% IMPROVEMENTS FROM RHBOOK
+% invisible parts?
+% \adjustright built into \dropcap
+
+% TO FIX
+% auto change babel language in footnotes
+% add ć to font
+% note years in English translation entries
+% initial line numbers in drama & long poetry paraphrase paragraphs?
+% set hang indent over many paragraphs?
+% elegies auto-indent?
+
+% ALTERNATE EPICS
+% Botta, Davidias: https://books.google.com/books?id=kqAU4bYZWiMC&pg=PA23
+% Bollinger, Moseis: http://digitale.bibliothek.uni-halle.de/vd16/content/titleinfo/995108
+% Didymus, Iosephias: https://books.google.com/books?id=Z9xIAAAAcAAJ
+% Corvinus, Iosephias: https://www2.uni-mannheim.de/mateo/camena/corvi1/te01.html
+
+% JOURNAL ARTICLES
+% Frischlin: jstor.org/stable/2857014
+% Herbert: jstor.org/stable/4174080
+% (book, German) The Bible Epic in the Early Modern period: books.google.com/books?id=XlfnBQAAQBAJ
+
+% LATER
+% uncopyable fleurons: https://tex.stackexchange.com/questions/309875/uncopyable-watermark
+% replace fancyhdr with titleps: www.texnia.com/titleps_fancyhdr.html
+% replace tocloft with titletoc for centering TOC title
+% microtype for e.g. DA
+% look into PDFlatex for kerning
+
+% woodcut decorations (e.g. Woodcut 1 font by Listemageren)
+% historical font: https://www.myfonts.com/morelike/106809/
+% fancy fleurons: https://www.myfonts.com/search/intellecta+design+fleurons/
+% fancier borders:
+%% http://www.fontcraft.com/fontcraft/mcmurtrie-historic-borders/
+%% http://www.fontcraft.com/fontcraft/historic-borders/
+%% https://www.myfonts.com/fonts/2d-typo/bandelwerk/
+%% https://www.myfonts.com/fonts/2d-typo/moreske-2d/
+%% !! https://www.myfonts.com/fonts/2d-typo/strapwork/
+%% https://www.myfonts.com/fonts/2d-typo/historism-border-2d/
+%% https://www.myfonts.com/fonts/intellecta/gans-headpieces/
+% books on fleurons: https://privatelibrary.typepad.com/the_private_library/2011/11/fleurons-and-the-private-library.html
+
+% text borders:
+%% https://tex.stackexchange.com/questions/207393/add-some-vertical-text-on-the-margin-of-document
+%% https://tex.stackexchange.com/questions/31807/where-can-i-find-examples-of-decorated-borders-margins
+%% https://tex.stackexchange.com/questions/327238/create-side-border-with-a-text
+%% https://tex.stackexchange.com/questions/34655/a-beautiful-border-style
+%% https://tex.stackexchange.com/questions/367665/how-to-decorate-a-page-border-with-text
+
+% found Roman numeral TOC fix here: https://tex.stackexchange.com/questions/380933/toc-with-auto-spacing-for-roman-enumeration
+% book class & titletoc fix: https://tex.stackexchange.com/questions/454547/part-number-separated-of-part-name-in-table-of-contents/454553#454553
+% if overfull lines: https://texfaq.org/FAQ-overfull
+% if fancier lettrine overlap avoidance needed, make this work: https://tex.stackexchange.com/questions/369868/using-lettrine-with-short-paragraphs
+% if TOC section dots needed: https://tex.stackexchange.com/questions/115481/how-do-i-change-the-typeface-from-bold-to-normal-for-text-written-on-the-table-o
+	% or https://tex.stackexchange.com/questions/41385/turn-the-section-font-from-bold-to-roman-in-a-table-of-contents
+% SPACING: https://tex.stackexchange.com/questions/295157/double-spaced-document-with-exceptions
+% FONT SIZE: https://en.wikibooks.org/wiki/LaTeX/Fonts
+% VERSE LINE BREAKS: https://tex.stackexchange.com/questions/387709/changing-margin-widths-in-verse-environment
+% stretch line spacing to fit page:
+	% https://tex.stackexchange.com/questions/221034/stretching-vertical-space-to-evenly-fit-a-part-of-the-document-within-minimal-nu
+	% https://tex.stackexchange.com/questions/147545/how-do-i-ask-latex-to-exactly-fill-up-a-page
+	% https://tex.stackexchange.com/questions/202097/flexible-leading-space-between-lines-throughout-document
+	% https://tex.stackexchange.com/questions/155854/stretch-line-spacing-to-fill-page
+	% https://www.google.com/search?safe=active&rlz=1C1CHBD_enUS799US800&ei=Low8XIq4EIaEjLsPkpSS-Ac&q=latex+flexible+stretch+line+spacing+to+fit+page&oq=latex+flexible+stretch+line+spacing+to+fit+page&gs_l=psy-ab.3...21712.22880..22960...0.0..0.229.1484.2-7......0....1..gws-wiz.......0i71.eZRxBPGEUfI
+
+\newcommand{\nobookmargins}{%
+	\setlength{\oddsidemargin}{0in} % from https://tex.stackexchange.com/questions/137021/non-alternating-margins-in-book-class
+	\setlength{\evensidemargin}{0in}
+}
+\nobookmargins
+\documentclass[20pt, twoside]{extarticle}
+\usepackage[letterpaper, top=1in, bottom=.8in, left=1.2in, right=1.2in, headsep=1.2em]{geometry}
+\usepackage[latin,english]{babel}
+\usepackage{microtype}
+\babeltags{en = english}
+\babeltags{la = latin}
+\usepackage{fontspec, fancyhdr, lettrine, wallpaper, url, setspace, graphicx, enumitem, atbegshi, xcolor, comment, etoolbox}
+\usepackage[newparttoc]{titlesec}
+\usepackage[dotinlabels,rightlabels]{titletoc}
+\PassOptionsToPackage{hyphens}{url}\usepackage[hidelinks]{hyperref}
+\AtBeginDocument{\onehalfspacing}
+\usepackage[series={A,B,C,D},noresetlinenumannotation,noend,noeledsec,noledgroup]{reledmac}
+\usepackage[prevpgnotnumbered]{reledpar}
+%\def\changemargin#1#2{\list{}{\rightmargin#2\leftmargin#1}\item[]}
+%\let\endchangemargin=\endlist
+
+% fonts
+%\defaultfontfeatures{Scale=MatchLowercase}
+\newcommand{\sm}{\fontsize{19pt}{20pt}\selectfont}
+\newcommand{\sma}{\fontsize{19.5pt}{20pt}\selectfont}
+\setmainfont[ExternalLocation=_fonts/]{GoudyBookletter1911.otf}[ItalicFont=GoudyOldStyleItalic.ttf,%
+BoldFont=GoudyOldStyleExtraBold.otf,%
+ItalicFeatures={Scale=1.07}]% or Scale=MatchUppercase
+\newfontfamily\fleur[ExternalLocation=_fonts/]{BeautifulOrnamentsThree.ttf}
+\newfontfamily\fleurlong[ExternalLocation=_fonts/]{folkartdividers_sg.ttf}
+\newfontfamily\floralcaps[Scale=8]{Floral Capitals}
+\newfontfamily\smallfloralcaps[Scale=4]{Floral Capitals}
+\renewcommand*{\LettrineFont}{\floralcaps}
+\newcommand{\dropcap}[2]{%
+	\lettrine[lines=4, loversize=.12, lraise=-.05]{#1}{#2}
+}
+
+% TOC and titles
+\def\ornaI{0.4}
+\def\ornbI{0.5}
+\def\ornaII{0.55}
+\def\ornbII{0.65}
+\def\ornaIII{0.5}
+\def\ornbIII{0.55}
+\def\ornaIV{0.5}
+\def\ornbIV{0.6}
+\def\ornaV{0.55}
+\def\ornbV{0.5}
+\def\ornaVI{0.4}
+\def\ornbVI{0.5}
+\setcounter{tocdepth}{2}
+\renewcommand{\thepart}{\Roman{part}}
+\titleformat{\part}[display]{\Huge\centering}{\ornament{\thepart-a.jpg}{\csname orna\thepart\endcsname}\\[0.4\baselineskip]\large\centering PART \thepart.}{0.5em}{}[\vspace{0.8em}\ornament{\thepart-b.jpg}{\csname ornb\thepart\endcsname}]
+\titleformat{\section}[block]{\vspace{-1em}\huge\centering}{}{0em}{}
+\titleformat{\subsection}{\normalsize\bfseries}{}{0em}{}
+\titleformat{name=\section,numberless}[block]{\Large\centering}{}{0pt}{}
+\titlespacing{\part}{0em}{0em}{4em}
+\titlespacing{\section}{0em}{0em}{0em}
+\titlespacing{\subsection}{0em}{0em}{0em}
+\titlecontents{part}[0em]{\vspace{.8em}\rmfamily}{\contentslabel{2em}\hspace{.333em}}{\hspace*{-2em}}{\hfill\contentspage}
+\titlecontents{section}[1.5em]{\vspace{.8em}\rmfamily}{\contentslabel{1.2em}}{\hspace*{-1.1em}}{\hfill\contentspage}
+
+% URLs
+\urlstyle{same}
+\definecolor{urlblue}{RGB}{0,0,130}
+\hypersetup{colorlinks=true, urlcolor=urlblue, linkcolor=black}
+
+% other visuals
+\definecolor{bordergray}{gray}{0.10}
+\renewcommand\fbox{\fcolorbox{bordergray}{white}}
+\setlength{\footskip}{70pt} % for intro page numbers
+
+% reledmac options
+\AtStartEveryPstart{\ifledRcol\itshape\fi}
+\newcommand{\narrate}[1]{{\normalfont #1}}
+%\setlength{\stanzaindentbase}{21pt}
+%\setstanzaindents{2,0}
+%\setcounter{stanzaindentsrepetition}{1}
+\setRlineflag{}
+\newcommand{\adjustright}{\vspace{.28em}} % due to lettrine on left
+
+% headers
+\newcommand{\fancysection}[4]{%
+	\fancyhead[CE]{\textit{#2}}
+	\fancyhead[CO]{#1}
+	\pstart[\unexpanded{\section[#2: #1]{#3\\\vspace{-.6em}\Large#4}}\thispagestyle{empty}]
+	\pend
+}
+\newcommand{\fancysectionR}[2]{%
+	\pstart[\unexpanded{\section[#2: #1]{#1\\\vspace{-.6em}\Large#2}}\thispagestyle{empty}]
+	\pend
+}
+%\newcommand{\smalldropcap}[2]{%
+%	\renewcommand*{\LettrineFont}{\smallfloralcaps}
+%	\lettrine[lines=2, loversize=.12, lraise=-.05]{#1}{#2}
+%	\renewcommand*{\LettrineFont}{\floralcaps}
+%}
+\newcommand{\ornament}[2]{%
+	\setlength{\fboxrule}{0pt}
+	\noindent
+	\makebox[\textwidth]{\fbox{\includegraphics*[width=#2\textwidth]{_img/#1}}}
+}
+\newcommand{\partparskip}{\\[1\baselineskip]}
+%\makeatletter
+%\let\clearledleftpage\clearl@dleftpage
+%\let\clearledrightpage\clearl@drightpage
+%\makeatother
+\newif\iflongpart
+%\newtoggle{longpart}
+%\togglefalse{longpart}
+
+% footnotes
+\Xonlyside[A]{L}
+\Xonlyside[B]{L}
+\Xnotefontsize[A]{\small}
+\Xnotefontsize[B]{\footnotesize}
+%\interfootnotelinepenalty=10000 % or \Xonlyside[A]{L}..[B]{L}..[C]{R}..[D]{R}
+\Xcolalign{\justifying}
+\makeatletter
+	\Xbhooknote{\setstretch{0.9}}
+	\Xbhookgroup{\setstretch{0.9}\setlength{\parindent}{0pt}}
+\makeatother
+\Xbeforenotes[A]{2pt}
+\Xbeforenotes[B]{10pt}
+\Xafterrule[A]{5pt}
+\Xafterrule[B]{4pt}
+\Xmaxhnotes[A]{.9\textheight}
+\Xmaxhnotes[B]{.9\textheight}
+\newcommand{\myindent}{\hspace*{12pt}}
+\Xlemmadisablefontselection[A] % italicized lemmata
+\Xlemmafont[A]{\itshape}
+\Xlemmadisablefontselection[B]
+\Xlemmafont[B]{\itshape}
+% right-side series
+\Xonlyside[C]{R}
+\Xonlyside[D]{R}
+\Xnotefontsize[C]{\small}
+\Xnotefontsize[D]{\footnotesize}
+\Xbeforenotes[C]{4pt}
+\Xbeforenotes[D]{10pt}
+\Xafterrule[C]{5pt}
+\Xafterrule[D]{4pt}
+\Xmaxhnotes[C]{.9\textheight}
+\Xmaxhnotes[D]{.9\textheight}
+\Xlemmadisablefontselection[C]
+\Xlemmafont[C]{\itshape}
+\Xlemmadisablefontselection[D]
+\Xlemmafont[D]{\itshape}
+\newcommand{\noteL}[2]{\edtext{#1}{\Bfootnote{\texten{#2}}}}
+\newcommand{\noteLlemma}[3]{\edtext{#1}{\lemma{#3}\Bfootnote{\texten{#2}}}}
+\newcommand{\noteR}[2]{\edtext{#1}{\Dfootnote{\texten{#2}}}}
+\newcommand{\noteRlemma}[3]{\edtext{#1}{\lemma{#3}\Dfootnote{\texten{#2}}}}
+\newcommand{\alt}[1]{(#1)}
+
+%---------------------------------------------------
+%                      INTRO PAGES
+%---------------------------------------------------
+
+% title page
+\newcommand*{\titlepg}{\begingroup
+	\newgeometry{bottom=.3in,left=.76in}
+	\ThisCenterWallPaper{0.96}{_img/frontispiece1550.jpg}
+	\centering
+	\vspace*{5\baselineskip}
+	%{\huge SURSUM\\[0.25\baselineskip]\huge CORD\hspace{-3pt}A}\\
+	%\vspace*{2\baselineskip}
+	%{\large Latin stories and songs\\[0.1\baselineskip]\large of the Reformers}\\\vspace*{8.1\baselineskip}
+	{\huge STORIES\\[0.25\baselineskip]\huge \& SONGS}\\
+	{\large in Protestant Latin\\[1.4\baselineskip]\large A student anthology}\\\vspace*{8.6\baselineskip}
+	{\large MMXIX.}
+	\restoregeometry
+	\clearpage
+\endgroup}
+
+% copyright page
+\newcommand*{\copyrightpg}{\begingroup
+	\vspace*{\fill}
+	{\noindent\small\textit{This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License:}\\
+	\url{https://creativecommons.org/licenses/by-sa/4.0/}\\[2\baselineskip]
+	\textit{Title image:} Giorgio Vasari’s \textit{Le Vite}, 1550, \rlap{frontispiece}\\
+	\textit{Other images:} Wellcome Trust (\emph{David}), \href{https://creativecommons.org/licenses/by/4.0/deed.en}{CC BY 4.0 license}\\\hspace*{5.7em}Phillip Medhurst (\emph{New Jerusalem}), \href{https://creativecommons.org/licenses/by-sa/3.0/deed.en}{CC BY-SA 3.0}\\\hspace*{5.7em}BibliOdyssey (printers’ ornaments), \href{https://creativecommons.org/licenses/by-sa/2.0/}{CC BY-SA 2.0}\\
+	\textit{Fonts:} Goudy Bookletter 1911 by Barry Schwartz\\\hspace*{2.63em}Goudy Old Style by URW\\
+	\textit{Initials:} Floral Capitals by Vladimir Nikolic\\
+	\textit{Typesetting:} \LaTeX\ with \texttt{reledmac} by Maïeul Rouquette\\[2\baselineskip]
+	Compiled by Felipe Vogel.\\
+	\url{https://lectiohumana.com}\\[.5\baselineskip]
+	Last updated \today.\\\footnotesize Do you see a mistake? Please let me know: \href{mailto:fps.vogel@gmail.com?subject=Sursum Corda: errata}{fps.vogel@gmail.com}.\par}
+	\vspace*{\fill}
+	\clearpage
+\endgroup}
+
+% quotes page
+\newcommand*{\quotespg}{\begingroup
+	\vspace*{\fill}
+	\noindent
+	“Dum volumus Christum recipere sicut reipsa nobis datur, sursum corda erigamus.”\\[-.3\baselineskip]
+	\hspace*{12.5em}– John Calvin,\\
+	{\small\emph{\hspace*{12em}Articles of Sacred Theology\\[-.1\baselineskip]
+	\hspace*{12em}of Paris \& the Antidote}, ad V.}\\[1.8\baselineskip]
+	{\sma“Worship is more like literature than logic. \dots\ Thus one can often find the sacramental imagination better pictured in novels than dissertations.”}\\[-.3\baselineskip]
+	\hspace*{11.5em}– James K. A. Smith,\\
+	\hspace*{11.5em}{\emph{Desiring the Kingdom}}\\[1.8\baselineskip]
+	{\sma“If God chooses to be mythopoeic—and is not the sky itself a myth—shall we refuse to be mythopathic? For this is the marriage of heaven and earth: perfect myth and perfect fact: claiming not only our love and our obedience, but also our wonder and delight, addressed to the savage, the child, and the poet in each of us no less than to the moralist, the scholar, and the philosopher.”}\\[-.3\baselineskip]
+	\hspace*{12.5em}– C. S. Lewis,\\
+	\hspace*{12.5em}{\sma\emph{Myth Became Fact}}\par
+	\vspace*{\fill}
+	\clearpage
+\endgroup}
+
+% TOC page
+\newcommand*{\tocpg}{\begingroup
+	\nobookmargins
+	\newgeometry{left=1.4in, right=1.3in, top=1in, bottom=1.3in}
+	{\sm\tableofcontents}
+	\restoregeometry
+	\clearpage
+\endgroup}
+
+% intro page
+\newcommand*{\prefacepg}{\begingroup
+	\nobookmargins
+	\newgeometry{left=1.35in, right=1.35in, top=1.4in, bottom=1.5in}
+	\setlength{\parskip}{.2em plus .1em minus .1em}
+	\section*{Preface}
+	%\addcontentsline{toc}{section}{Preface}
+	\vspace{.7em}
+	\begin{en}
+	{\small\setstretch{1}\noindent This volume is different in its purpose from the excellent anthologies of Neo-Latin literature currently available, such as Milena Minkova’s \href{https://lup.be/products/107967}{\textit{Florilegium Recentioris Latinitatis}} (Leuven, 2018). In this volume, a particular slice of Neo-Latin literature is presented in a particular way: non-theological Protestant Latin literature of the 16\textsuperscript{th} and 17\textsuperscript{th} centuries, presented with aids for the intermediate Latin student.\par
+	First, a word about the aids. On the page opposite each original text is an italicized paraphrase, serving as an easier step up to the original texts. The paraphrase is in Latin rather than English because the more Latin a student can work with before resorting to English at a difficult point, the more progress will be made in Latin. Footnotes on either side shed further light at difficult points. Some of the usual English aids, such as a translation and running vocabulary list, can be replaced by the online resources listed in the appendices.\par
+	This volume is typeset in a large font because it is meant to be viewed two facing pages at a time, with the original text on the left and the paraphrase on the right side. This can be achieved with the “Two Page” viewing option in PDF software. For readers who need printed pages, the same layout can be achieved by printing two pages per sheet of paper.\par
+	In my choice of texts, I have tended toward simpler texts and Protestant authors, with a few exceptions. Heinrich Bebel predated the Protestant Reformation, but his joke book gives us glimpses into its social context. Erasmus was a Roman Catholic to the end, but generations of Protestant schools used his Latin dialogues. Marko Marulić, too, was Roman Catholic, but his work is an outstanding example of the biblical storytelling popular among 16\textsuperscript{th}-century humanists across religious divides.\par
+	If it is wondered why, then, I have not included more texts by Roman Catholics, it is not because they were inferior in quality or quantity. To the contrary, the Jesuits far outlasted Protestants in their Latin literary tradition, and this Jesuit tradition is better remembered today, as for example in \href{https://www.amazon.com/dp/086516214X}{\textit{Jesuit Latin Poets of the Seventeenth and Eighteenth Centuries: An Anthology of Neo-Latin Poetry}} (Bolchazy-Carducci, 1989). The relative obscurity of Protestant Latin authors is precisely why I wished to devote this volume to them, to rescue their still useful works from the dustbin of history, and to strive for the wish of Erasmus: \textit{Cum bonis litteris floreat sincera pietas!}\par
+	\hspace*{\fill}Felipe Vogel}\par
+	\end{en}
+	\vspace*{\fill}
+	%\vspace{5em}
+	\ornament{ot-diamond.jpg}{0.3}
+	\restoregeometry
+	\clearpage
+	\parskip = 0pt plus .1pt
+\endgroup}
+
+% part pages
+\newcommand*{\partpg}[7]{\begingroup
+	\begin{singlespace}
+	\begin{en}
+	\thispagestyle{empty}
+	\vspace*{\fill}
+	\part{#1}
+	\vspace*{\fill}
+	\clearpage
+	\thispagestyle{empty}
+	\vspace*{\fill}
+	\centering
+	\vspace{#5}
+	\setlength{\fboxsep}{4pt}
+	\setlength{\fboxrule}{#6}
+	\makebox[\textwidth]{\fbox{\includegraphics*[width=#4\textwidth]{_img/\thepart.jpg}}}\\[.7\baselineskip]
+	{\small #7}
+	\vspace*{\fill}
+	\clearpage
+	\justifying
+	\thispagestyle{empty}
+	%\vspace{1em}
+	{\small\noindent\setstretch{.9}#2\\[2\baselineskip]#3\par}
+	\end{en}
+	\end{singlespace}
+	\iflongpart
+		\thispagestyle{empty}
+ 		\vspace{3em}
+	\else
+		\clearpage
+		\thispagestyle{empty}
+		\vspace*{\fill}
+	\fi
+	%\iftoggle{longpart}{%
+	%	\thispagestyle{empty}
+ 	%	\vspace{3em}
+	%}{%
+	%	\clearpage
+	%	\thispagestyle{empty}
+	%	blah!
+	%	\vspace*{\fill}
+	%}
+	\ornament{\thepart-c.jpg}{0.8}
+	\vspace*{\fill}
+	%\togglefalse{longpart}
+	\clearpage
+\endgroup}
+
+\begin{document}
+\pagenumbering{arabic}
+\pagestyle{empty}
+\titlepg
+\copyrightpg
+\begin{singlespace}
+%\quotespg
+\prefacepg
+\tocpg
+\end{singlespace}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE]{\thepage}
+\fancyhead[RO]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+\selectlanguage{latin}
+
+%***************************************************
+%***************************************************
+%                      DIALOGUES
+%***************************************************
+%***************************************************
+
+%\toggletrue{longpart}
+\longparttrue
+\partpg{Dialogues}%
+{Ever since Cicero’s transplanting of the Greek philosophical dialogue into Latin, the dialogue had been a common genre in Latin philosophical and religious writing. Renaissance humanists, however, turned it to a new purpose when they wrote \emph{colloquia scholastica}, textbooks of conversational Latin. Inspired especially by the comedies of Terence and the letters of Cicero, these dialogues show the humanists’ paradoxical commitment to teach Latin as a living classical language. The \emph{colloquia} of Erasmus and Corderius were the most popular and enduring. Some teachers, such as Castellio, gave the genre a biblical spin. Morata’s dialogues show the continued use of the philosophical dialogue in new religious contexts.}%
+{\textbf{Sebastian Castellio} (1515–1563), one-time preacher and school rector in Geneva, went down in history for his many disagreements with John Calvin and Theodore Beza. Yet the greater part of his published works are educational, aiming to train students in biblical piety and good Latin style. Such were his Latin dialogues based on Bible stories (1545), which became especially popular in England.\partparskip%
+\textbf{Mathurin Corderius} (c.1479–1564), a French humanist most famous for being one of John Calvin’s teachers and later in his life a teacher in Geneva, wrote school dialogues (c. 1559) that became a favorite Latin textbook for centuries.\partparskip%
+\textbf{Desiderius Erasmus} (c.1466–1536) worked tirelessly for a Christian Renaissance in northern Europe. Although he never sympathized with Protestants, they appreciated his sharp criticism of clerical corruption, shared his longing for the pure simplicity of the early Church, and used in their schools his peerless Latin dialogues, published in their final form in 1533.\partparskip\\%
+\textbf{Olympia Fulvia Morata} (1526–1555) was an Italian Protestant whose works were largely destroyed in war, but whose surviving writings, first published in 1558 by her friend Caelius Secundus Curio, attest to her great talent and first-rate education.}%
+{1}{-1em}{3pt}{Jost Amman, from his volume of woodcut illustrations \emph{Kunstbüchlein} or \emph{Enchiridion Artis Pingendi, Fingendi\\et Sculpendi}, 1578.}
+
+% discard the empty page created by reledpar; comment it out if previewing in TeXworks for a correct page spread
+%\AtBeginShipoutNext{\AtBeginShipoutDiscard}
+
+%---------------------------------------------------
+%                      DIALOGI SACRI
+%---------------------------------------------------
+
+\firstlinenum{5}
+\linenumincrement{5}
+\firstlinenumR{5}
+\linenumincrementR{5}
+\linenummargin{right}
+\renewcommand{\ledlsnotesep}{.7em} % for characters speaking
+\renewcommand{\ledlsnotefontsetup}{\raggedleft\small}
+\titleformat{\subsubsection}{\normalsize\centering}{}{0em}{}
+\titlespacing{\subsubsection}{0em}{1em}{0em}
+\newcommand{\nameL}[1]{\ledleftnote{\itshape #1:}}
+\newcommand{\nameR}[1]{\ledleftnote{\normalfont #1:}}
+\newcommand{\cL}[1]{\pend\pstart\noindent\nameL{#1}}
+\newcommand{\cR}[1]{\pend\pstart\noindent\nameR{#1}}
+\newcommand{\sententiaL}{%
+	\pend\pstart[\unexpanded{\subsubsection{SENTENTIA:}}]\noindent
+}
+\newcommand{\sententiaR}{%
+	\pend\pstart[\unexpanded{\subsubsection{\itshape SENTENTIA:}}]\noindent
+}
+
+\begin{pages}
+\begin{Leftside}
+	\beginnumbering
+	\fancysection{Sacred Dialogues}{Sebastian Castellio}{Dialogi Sacri}{auctore Sebastiano Castellione}
+	\pstart[\unexpanded{\subsection[Jael]{Iael—apud Iudices cap. 4\textsuperscript{um}\\{\normalfont\itshape Iael, Sisara, Baracus}}}]
+		\dropcap{D}{IVERTE}\setline{1}ad me, Sisara. Quo fugis? Diverte ad me tuto.\\\emph{S:} Bene mones. Sed ubi abdes me?\\\emph{I:} Bono animo es. Sub hoc centone: hic latebis tutissime.
+		\cL{S}Amabo, da mihi paululum aquae, \noteL{quod bibam}{Relative pronoun + subjunctive indicates purpose: “so that I can drink it.”}. Nam valde sitio.
+		\cL{I}Immo lac dabo ex hoc sinu, quod melius est aqua. Hem, bibe. Nunc quiescito, ubi texero te hac stragula veste.
+		\cL{S}Sed sta ad ianuam casae, ut si quis me quaeret, neges hic esse.
+		\cL{I}Fiet. \dots\ \emph{(sibi)} Nunc demum facinus edam maius feminea manu. Quid hoc? Gestit animus, iubetque audere ulcisci hostem Dei et bonorum. \dots\ Periisti, Sisara. Feminea vi, feminea manu interemeris.
+		\cL{B}Quis mihi nunc, quis demonstret, quo fugerit hostis? Quem ego si assecutus fuero, dispeream nisi ei animam eripio malis modis. Sed quo se surripuit? Quo fugit?
+		\cL{I}O Deum immortalem, quantum ego facinus feci? Quantam laudem inveniet Iael? Sed videone Baracum? Ipse est. Sectatur hostem iam iacentem. Barace, huc sis ad me, ut tibi commonstrem hominem quem quaeris.
+		\cL{B}Obsecro, estne is apud te?
+		\cL{I}Videbis.
+		\cL{B}Pro! Superi, quid video? Sisaram iacentem humi exanimem? Quis hoc fecit?
+		\cL{I}Mulieris factum vides.
+		\cL{B}At non muliebre tamen. Sed quaeso, tune hoc fecisti?
+		\cL{I}Ipsa res indicat.
+		\cL{B}Video: sed narra, obsecro, quo pacto egeris.
+		\cL{I}Vidi fugientem, iussi ut ad me veniret, eumque operui centone. Deinde cum iam quiesceret, cepi clavum, quem malleo adegi in tempus eius. Ille provolutus ad pedes meos, efflavit animam.
+		\cL{B}Utinam sic pereant, quotquot adversantur Deo!
+		\sententiaL Turpi morte digni sunt, qui Deo aut eius populo adversantur. Debilium manu vincit Deus fortes.
+	\pend
+	\endnumbering
+\end{Leftside}
+\begin{Rightside}
+	\beginnumbering
+	\fancysectionR{Sacred Dialogues}{by Sebastian Castellio}
+	\pstart[\subsection{Jael—Judges 4\\{\normalfont Iael, Sisara, Baracus}}]
+		\adjustright\noindent
+		\nameR{I}\setline{1}Veni huc, Sisara, et mane apud me (in domo mea). Quo \alt{ad quem locum} fugis? Veni huc, et mane apud me sine periculo.\\\nameR{S}Bonum consilium mihi das. Sed ubi me celabis?\\\nameR{I}Fortis sis \alt{esto}. Sub hoc stragulo: hic te celabo sine ullo periculo.
+		\cR{S}Quaeso, da mihi aliquantulum aquae, ut aquam bibam. Nam iamdiu non bibi, et aqua egeo.
+		\cR{I}Immo lac tibi dabo ex hoc utre, quod melius est quam aqua. Ecce, bibe. Nunc quiesce hic, ubi hoc stragulo te tegam.
+		\cR{S}Sed sta iuxta ianuam casae, ut dicas me abesse, si homines venerint me quaerentes.
+		\cR{I}Ita faciam. \dots\ \narrate{(Iael sibi cogitat:)} Nunc tandem aliquid faciam, \noteR{quod}{Relative pronoun referring to \emph{aliquid}.} feminae suis manibus non faciunt. Quid sentio!? Animus meus vehementer vult necare hunc hostem Dei et bonorum hominum. \narrate{(Iael Sisaram necat.)} Factum est. Mortuus es, Sisara. Feminae vi et feminae manu necatus es.
+		\cR{B}Quis ostendere mihi potest, \noteR{quo fugerit}{Indirect statement. Direct: \emph{Quo fūgit Sisara?} (perfect tense \emph{fūgit}, present \emph{fugit}) Indirect: \emph{Nemo mihi monstrat, quo fūgerit Sisara.}} Sisara? Si eum cepero, certo \alt{sine dubio} eum crudeliter necabo. Sed ubi se celavit? Quo abivit?
+		\cR{I}Vah! \noteR{Deum immortalem}{Acc. of exclamation.}, quam magnam rem gessi \alt{quam magnum factum feci}! Quam magnam laudem accipiam! \narrate{(Baracus appropinquat.)} Quis est ille appropinquans? Quem video? Estne Baracus? Ita est. Baracus sequitur \alt{petit} hostem qui nunc mortuus est. Heus, Barace! Veni huc, ut tibi ostendam hominem quem petis.
+		\cR{B}Quaeso, estne is in domo tua?
+		\cR{I}Videbis. \narrate{(Domum intrant.)}
+		\cR{B}Papae! Quid video? Sisara iacet humi mortuus! Quis eum necavit?
+		\cR{I}Mulier hoc fecit.
+		\cR{B}Tamen non ut mulier! Sed quaeso, tune Sisaram necavisti?
+		\cR{I}Manifestum est.
+		\cR{B}Intellego. Sed \noteR{dic mihi, quaeso, quomodo hoc feceris}{Subjunctive in a question in indirect speech. Direct: \emph{Quomodo hoc fecisti?} Indirect: \emph{Cupio scire quomodo hoc feceris.}}.
+		\cR{I}Primum Sisaram fugientem vidi, iussi eum huc venire, et eum stragulo tegi. Tum, \noteR{Sisara dormiente}{Abl. absolute.}, malleo clavum pulsavi in eius caput. \noteR{Capite percusso}{Abl. absolute or abl. of description.}, Sisara iuxta pedes meos mortuus est.
+		\cR{B}Sic perire debent omnes Dei adversarii!
+		\sententiaR Mali homines, qui cum Deo aut cum eius populo pugnant, mori debent. Contra magnos inimicos Deus mittit parvos homines, et sic Deus magnos vincit.
+	\pend
+	\endnumbering
+\end{Rightside}
+\end{pages}
+\Pages
+
+\linenummargin{left}
+
+%***************************************************
+%***************************************************
+%                      PROSE NARRATIVE
+%***************************************************
+%***************************************************
+
+%\togglefalse{longpart}
+\longpartfalse
+\partpg{Prose Narrative}%
+{To dispel the popular misconception that Latin literature consists of interesting poetry on war and love on the one hand, and mundane prose on philosophy and history on the other, 16\textsuperscript{th}- and 17\textsuperscript{th}-century Latin is as convenient an antidote as any. Bebel’s jokes are surely the most humorous of our selections, but the prose of Castellio, Melanchthon, and Gott are no less artful and lively for their more religious orientation.}
+{\textbf{Heinrich Bebel} (1472–1518) was a German professor of rhetoric and poetry. His most popular publication was his \emph{Facetiae}, a collection of humorous and satirical anecdotes.\partparskip%
+\textbf{Sebastian Castellio} (1515–1563), whose dialogues were excerpted in the previous section, also produced a translation of the Bible into highly classical Latin (1551).\partparskip%
+\textbf{Philip Melanchthon} (1497–1560) was much more than our popular image of him as Martin Luther’s sidekick. More than anyone, he infused the Reformation with the tools of Renaissance humanism, attracted to it many bright minds, and ensured its survival through education. But however their methods may have differed, Melanchthon a devoted friend and admirer of Luther, as we see in his 1549 biography defending Luther after his death.\partparskip%
+\textbf{Samuel Gott} (1614–1671) was a Puritan who, besides leading a career in Parliament interrupted by turbulent times, wrote on religious subjects. His novel \emph{Nova Solyma} (“New Jerusalem,” 1648) was rediscovered in the early 20\textsuperscript{th} century and for a few years enjoyed the distinction of being falsely attributed to John Milton.}%
+{0.77}{-1.8em}{4pt}{Gustave Doré, \emph{The New Jerusalem}, one of his\\engravings for the \emph{Bible de Tours}, 1865.}
+
+%---------------------------------------------------
+%                      FACETIAE
+%---------------------------------------------------
+
+\begin{pages}
+\begin{Leftside}
+	\beginnumbering
+	\fancysection{Jokes}{Heinrich Bebel}{Facetiae}{auctore Henrico Bebelio}
+	\pstart[\unexpanded{\subsection[About someone buying an unruly horse]{De quodam equum improbum emente}}]
+		\dropcap{Q}{UIDAM}emens equum, quaesivit a venditore an valeret. Respondente venditore, valere, quaesivit cur venderet. Respondit ille, quia nimis comederet, quem ipse pauper aegre aleret. Quaerente vero emptore de aliis malis habitudinibus, respondit venditor, nullam aliam habere, quam quod non ascendat arbores. Cum autem emptor domum rediret, atque equum omnes mordentem videret, dixit verum esse, quod nimis comederet. Posthac veniens ad ligneum pontem, non potuit equum compellere, ut transiret pontem. Inde invenit equum non ascendere arbores.
+	\pend
+	\pstart[\unexpanded{\subsection[About a crafty priest]{De sacerdote callido}}]
+		Sacerdos quidam notissimus, nomine Fysilinus, cum \noteL{semel}{i.e. \emph{olim}.} ex sacco suo vellet depromere reliquias, quibus rusticos decipiebat, nihil invenit nisi faenum. Rustici enim priori nocte, reliquiis clam ablatis, ioci gratia faenum imposuerunt. Ille extracto faeno mox \noteL{ad versutum ingenium versus}{i.e. \emph{vertit ad versutum ingenium et \dots}} dixit, illud esse super quo die natali in praesepio requievisset Salvator noster infans, et illius esse efficaciae, ut ne adultera accedere auderet. Unde et si multis mendacium \noteL{visum}{i.e. \emph{manifestum}.} fuerit, ne tamen quisquam in suspicionem veniret adulterii, turmatim mulieres et viri accesserunt, faenum oblationibus venerantes.
+	\pend
+	\endnumbering
+\end{Leftside}
+\begin{Rightside}
+	\beginnumbering
+	\fancysectionR{Jokes}{by Heinrich Bebel}
+	\pstart[\subsection{About someone buying an unruly horse}]
+		\adjustright
+		Quidam homo equum emebat. Venditorem rogavit: “Valetne equus?” Venditor respondit: “Valet.” Emptor rogavit: “Cur equum vendis?” Venditor respondit: “Quia equus nimis comedit, et ego pauper non possum tot cibos ei emere.” Emptor rogavit de aliis malis moribus equi, cui venditor respondit: “Equus nullum alium malum morem habet, praeter unum: non ascendit arbores.” Deinde emptor equo insidens domum discessit, equus autem omnes homines mordebat. Quod cum emptor videret, “Verum est,” inquit, “quod nimis comedit!” Postea ligneum pontem appropinquavit, sed non potuit equum cogere, ut super pontem ambularet. Ex quo intellexit equum non ascendere arbores. 
+	\pend
+	\pstart[\subsection{About a crafty priest}]
+		Sacerdos quidam famosus, cui nomen Fysilinus, saccum suum aperuit ut inde extraheret sanctas reliquias, quibus utebatur \noteR{ad rusticos decipiendos}{Gerundive of purpose, i.e. \emph{ut {[}sacerdos{]} rusticos deciperet}.}. Sed faenum tantum in sacco invenit, nam rustici priori nocte iocum fecerunt: reliquias furtim abstulerunt, et faenum in sacco imposuerunt. Sacerdos extraxit faenum, et statim \noteR{consilio callido excogitato}{Abl. absolute.}, “Illud est faenum sanctum,” inquit, “super quod Salvator noster requievit die natali suo. Faenum est efficax ut ne quisquam adulter vel adultera id appropinquare possit. Multi rustici mendacium deprehenderunt \alt{intellexerunt}, sed nollebant videri esse adulteros, ergo omnes catervatim appropinquaverunt et oblationes \alt{dona} sacerdoti dederunt, ut faenum venerarent.
+	\pend
+	\endnumbering
+\end{Rightside}
+\end{pages}
+\Pages
+
+%---------------------------------------------------
+%                      BIBLIA SACRA
+%---------------------------------------------------
+
+\begin{comment}
+% Bible verses as reledmac line number annotations
+\let\linenumrepback\linenumrep
+\let\linenumrepbackR\linenumrep
+\newcommand{\bv}[1]{\linenumannotation{#1}}
+\makeatletter
+\Xwraplinenumannotation{\@firstofone}
+\renewcommand{\linenumrep}[1]{}
+\renewcommand{\linenumrepR}[1]{}
+\makeatother
+%\setlinenumannotationsep{,\ }
+\Xnoidenticallinenumannotation
+\firstlinenum{1}
+\linenumincrement{1}
+\firstlinenumR{1}
+\linenumincrementR{1}
+
+\begin{pages}
+\begin{Leftside}
+	\beginnumbering
+	\fancysection{Holy Scriptures}{Sebastian Castellio}{Biblia Sacra}{ex Sebastiani Castellione interpretatione}
+	\pstart[\subsection{The Gospel of Mark}]
+		\noindent
+		\dropcap{I}{NITIUM}\bv{1:1}\edtext{evangelii Iesu Christi, Dei filii.\bv{2} Ut scriptum}{\lemma{Initium \dots\ Ut scriptum}\Bfootnote{The first sentence lacks a verb, the second a main clause.}} in vatibus est: “Ego tibi meum praemittam nuntium, qui tibi viam praeparet.\bv{3} \edtext{Vox clamantis in solitudine}{\Bfootnote{Again, a main verb is lacking.}}: ‘Parate viam Domini! Dirigite semitas eius!’”
+	\pend
+	\pstart
+		\bv{4}Baptizabat Ioannes in solitudine, et emendationis vitae baptisma publicabat ad peccatorum veniam,\bv{5} ad eumque proficiscebatur tota Iudaea regio ac Hierosolymitani, et ab eo baptizabantur omnes in Iordane fluvio, confitentes peccata sua.\bv{6} Erat autem Ioannes indutus camelinis pilis, \edtext{lateribus pelliceo cingulo cinctis}{\Bfootnote{ablative of quality or description.}}, \edtext{vescebaturque locustis}{\Bfootnote{vescor, i + abl.}} et \edtext{melle silvestri}{\lemma{mel silvestre}\Afootnote{mel quod Ioannes non in horto vel apiario colebat, sed in locis desertis inveniebat.}},\bv{7} atque \edtext{huiusmodi verbis}{\Afootnote{i.e. talibus verbis, per talia verba.}} publice docebat: “Venit quidam post me, adeo me praestantior, ut ego non sim dignus qui eius \edtext{calceorum corrigiam}{\lemma{calceorum corrigia}\Afootnote{ligula qua calcei ligantur et obstringuntur, ne ex pedibus cadant.}} pronus solvam.\bv{8} Ego quidem vos aqua baptizavi, at is vos sancto Spiritu baptizabit.
+	\pend
+	\pstart
+		\bv{9}Accidit autem, ut per eos dies veniret Iesus a Nazaretha Galiliaeae, isque a Ioanne baptizatus est in Iordane.\bv{10} Qui Ioannes, simul ac ex aqua egressus est, vidit caelum findi et Spiritum quasi columbam descendere in eum,\bv{11} exstititque vox e caelo: “Tu es meus carissimus filius, qui mihi acceptus es.”\bv{12} Statimque Spiritus eum egit in solitudinem,\bv{13} ibique fuit in solitudine dies quadraginta, tentatusque est a Satana, eratque cum feris, et ei ministrabant angeli.
+	\pend
+	\endnumbering
+\end{Leftside}
+\begin{Rightside}
+	\beginnumbering
+	\fancysectionR{Holy Scriptures}{translated by Sebastian Castellio}
+	\pstart[\subsection{The Gospel of Mark, paraphrased}]
+		\adjustright\noindent
+		\bv{1:1}Evangelium Iesu Christi, Dei filii, ita incipit,\bv{2} ut vates scripserunt: “Nuntium ad te mittam \edtext{in antecessum}{\Cfootnote{antea, ante tempus, mature.}}, \edtext{ut nuntius viam tibi paret}{\lemma{ut \dots\ paret}\Dfootnote{purpose clause.}}.\bv{3} Nuntius in deserto clamabit: ‘Facite viam Domini, \edtext{eamque rectam}{\Cfootnote{i.e. ‘et facite eam rectam!’}}!’”
+	\pend
+	\pstart
+		\bv{4}Ioannes in deserto baptizabat, et \edtext{hortabatur}{\Dfootnote{hortor, -ari, deponent.}} peccatores qui vitam emendare volebant, \edtext{ut venia eis daretur}{\Cfootnote{veniam alicui dare: alicui ignosci, e.g. \emph{Male feci. Da mihi veniam / Ignosce mihi!}}}.\bv{5} Multi homines ex Iuda et Hierosolyma ad Ioannem veniebant, et Ioannes eos baptizabat in Iordane fluvio dum peccata sua \edtext{confitebantur}{\Dfootnote{confiteor, -eri, deponent.}}.\bv{6} Ioannes gerebat vestem ex pilis camelorum factam, et cingulum ex pelle factum; et comedebat locustas et mel deserti.\bv{7} Sic praedicabat: “Post me venit homo multo maior quam ego, \edtext{adeo maior ut non deceat me}{\Dfootnote{“so much greater that it’s improper for me \dots”}} procumbere ad eius pedes et solvere eius calceos.\bv{8} Ego vos aqua baptizavi, sed is vos sancto Spiritu baptizabit.”
+	\pend
+	\pstart
+		\bv{9}Illis diebus Iesus venit a Nazaretha Galilaeae, et Ioannis Iesum in Iordane baptizavit.\bv{10} \edtext{Iesu ex aqua exiente}{\Dfootnote{ablative absolute.}}, Ioannes vidit caelum \edtext{aperiri}{\Dfootnote{The verb \emph{to open} in English is used transitively and intransitively, e.g. “I am opening a window” vs. “The sky is opening.” But in Latin, these verbs in their intransitive sense are often in the passive voice, as here, and in the common verbs \emph{muto} and \emph{moveo}.}} et Spiritum specie columbae descendere \edtext{in Iesum}{\Dfootnote{in + acc. = “to.”}}.\bv{11} Vox e caelo audita est: “Tu es meus dilectissimus filius, qui mihi gratus es.”\bv{12} Statim Spiritus eum in desertum portavit,\bv{13} ubi \edtext{quadraginta dies}{\Dfootnote{accusative of duration of time.}} Satana eum tentavit. Iesus inter feras \edtext{versabatur}{\Dfootnote{versor, -ari, deponent.}}, et angeli \edtext{auxilium ei ferebant}{\Cfootnote{auxilium alicui ferre: aliquem adiuvare.}}.
+	\pend
+	\endnumbering
+\end{Rightside}
+\end{pages}
+\Pages
+
+\let\linenumrep\linenumrepback % switch back, verses to line #s
+\let\linenumrepR\linenumrepbackR
+
+\firstlinenum{5}
+\linenumincrement{5}
+\firstlinenumR{5}
+\linenumincrementR{5}
+
+%---------------------------------------------------
+%                      NOVA SOLYMA
+%---------------------------------------------------
+
+\newcommand{\pv}{\pend\pstart\noindent}
+\linenummarginR{left}
+
+\begin{pages}
+\begin{Leftside}
+	\beginnumbering
+	\fancysection{New Jerusalem}{Samuel Gott}{Nova Solyma}{auctore Samuele Gott}
+	\pstart[\subsection{Arrival in New Jerusalem}]
+		\dropcap{G}{\sm RANDINIS}\setline{1}{\sm hibernos Boreas exsolverat \rlap{imbres}\\
+		Brumaque Iudaei iam parte recesserat \rlap{anni}\\
+		Et caput abdiderat lapsum tellure sub \rlap{alta,}}\\
+		Cum petit obliquo coeli fastigia cursu
+		\pv Sol pater, et lentis crudam coquit ignibus auram.
+		\pv Parturit omnis ager, silvaeque herbaeque recentes,
+		\pv Et viridem pictis intexunt floribus \edtext{oram}{\Afootnote{regionem.}};
+		\pv Vocibus et blandis coeli iucunda salutat
+		\pv Lumina progenies pecudum; pubesque volantum
+		\pv Per nemus omne canit, nidis emissa relictis.
+		\pv In se mersa fluit \edtext{glacies}{\Bfootnote{quae tempore hiemali aquam fluviorum tegit, sed nunc tempore vernali deminuitur et in aquam mutatur propter calores.}}, et laeta propago
+		\pv Ludit ubique vadis, nullisque offensa procellis
+		\pv Aequora marmorei rident immania ponti.
+	\pend
+	\vspace{1em}
+	\pstart
+		Haec veris gratissima facies caelum, mare, terras condecoraverat, cum tres simul egregii iuvenes, illi Britannice, hic Siculo more vestitus, tristi et inauspicato itinere iam prospere peracto, montem cui Solyma insidet equis conscendebant. Urbs erat in fastigio edita, moenibus praealtis amplissimisque et in quaternos aequales angulos per latera montium circumductis.
+	\pend
+	\endnumbering
+\end{Leftside}
+\begin{Rightside}
+	\beginnumbering
+	\fancysectionR{Nova Solyma}{by Samuel Gott}
+	\pstart[\subsection{Arrival in New Jerusalem, paraphrased}]
+		\adjustright\noindent\setline{1}Postquam Boreas desivit tempestates frigidas,\\
+		et tempus hiemale in Iudaea iam praeterivit,\\
+		et hiems caput suum demissum celavit sub terra alta,\\
+		tum sol pater ad \edtext{summum caelum}{\Cfootnote{summam partem caeli, supremam partem caeli.}} longo circuitu ascendit,
+		\pv et lente aerem frigidum calefacit.
+		\pv Omnes agri, silvae, et herbae nascentes novam vitam edunt,
+		\pv Et in regione viridi flores ponunt.
+		\pv Vituli (pecudum nati) iucundum lumen solis vocibus
+		\pv dulcibus salutant. Pulli (avium nati) per omnes silvas
+		\pv canunt postquam volare incipiunt et nidos relinquunt.
+		\pv Glacies aqua mergitur in fluviis, et pisces parvuli
+		\pv ludunt ubique in aquis brevibus. Mare magnum
+		\pv \edtext{aequo animo}{\Cfootnote{laetus, sine curis.}} ridet quod nullae nunc adsunt tempestates.
+	\pend
+	\pstart
+		Cum haec pulchra forma temporis vernalis ornavisset caelum, mare, et terram, tres iuvenes insoliti Solymam appropinquabant post \edtext{iter male coeptum}{\Cfootnote{iter, quod iuvenes male coeperunt.}}, at \edtext{bene nunc peractum}{\Cfootnote{Iuvenes bene ad finem itineris nunc perveniunt.}}. Duo sicut Britanni vestiti erant, et tertius sicut Siculus. \edtext{Equis vehebantur}{\Cfootnote{equi eos vehebant, portabant.}} ad cacumen montis, ubi Solyma sita erat. Moenia alta magnaque circum urbem constructa erant per latera montis, ita recte ut quattuor anguli moeniorum inter se aequales essent.
+	\pend
+	\endnumbering
+\end{Rightside}
+\end{pages}
+\Pages
+\end{comment}
+
+%***************************************************
+%***************************************************
+%                      LETTERS
+%***************************************************
+%***************************************************
+
+\longpartfalse
+\partpg{Letters}%
+{Humanist letters present us with the most difficult prose in this volume. Educated people often corresponded across religious and other boundaries with a studied polish and urbanity, despite their gaping disagreements. Calvin’s letters to Melanchthon express a seeming solidarity at a time when the lines between the Reformed and Lutheran camps had been unmistakably drawn. The correspondence of van Schurman and Rivet shows that although women so educated and vocal were rare, the place of women in society was a live conversation among humanists of the 17\textsuperscript{th} century.}%
+{\textbf{John Calvin} (1509–1564), despite his baffling workload as a preacher and reformer, never abandoned his humanistic training. According to his biographer Theodore Beza (1519–1605), Calvin read through all of Cicero’s works every year. The humanist in Calvin shows in his correspondence with Philipp Melanchthon (1497–1560), which was friendly despite their deep theological disagreements.\partparskip%
+\textbf{Anna Maria van Schurman} (1607–1678) was a Dutch polymath at the center of a network of letter-writing humanists. Among her correspondents was the leading French Huguenot theologian \textbf{André Rivet} (1572–1651), with whom she debated the issue of women’s education in the late 1630’s. From this debate came her treatise on women’s education, the \emph{Dissertatio de Ingenii Muliebris ad Doctrinam et meliores Litteras aptitudine}.}%
+{1.07}{-2.15em}{3pt}{Albrecht Dürer, \emph{Saint Jerome in His Study}, one of the three\\Meisterstiche (“master prints”) engravings, 1514.}
+
+%---------------------------------------------------
+%                 VAN SCHURMAN AND RIVET
+%---------------------------------------------------
+
+\newcommand{\lettrineshiftL}{\\\skipnumbering\\\skipnumbering\\\skipnumbering}
+\newcommand{\lettrineshiftR}{\\\skipnumbering\\\skipnumbering\\\skipnumbering\\\skipnumbering\\\skipnumbering\\\skipnumbering}
+
+\begin{pages}
+\begin{Leftside}
+	\beginnumbering
+	\fancysection{Letters}{Anna Maria van Schurman}{Epistulae}{\vspace{.4em}Annae Mariae a Schurman\\\vspace{-1em}et Andreae Riveti}
+	\pstart[\unexpanded{\subsection[To André Rivet]{Viro clarissimo, et Patri in Christo venerando, Domino Andreae Riveto, S. P.}}]
+		\dropcap{N}{IHIL}mihi gratius accidere potuisset, vir reverende et in Christo venerande pater, quam quod intellegam te quantulumcumque nobis in \noteL{neptem vestram}{Van Schurman enjoyed an intellectually stimulating friendship with Marie du Moulin, Rivet’s niece, and encouraged her in her study of Hebrew.} conferre per nostram mediocritatem licuit, animo tam benevolo complecti. Quod si rem ipsam per se pensitare velles, parum id profecto fuit: sin vero affectus nostri propensitatem, nihil utique accessit quod non antiquo amicitae nostrae iure vobis deberi existimem. \dots
+	\pend
+	\pstart
+		Magni certe, prout decet, facio tuum iudicium: quod ubi non satis percipio, anceps haereo, et quasi suspenso pede cogor incedere. Illud autem in re non levi (ut quae officium ac condicionem virginei ordinis maxime tangit) iam dudum avide desidero, nec quidquam mihi antiquius aut gloriosius fore censeo, quam ut sententia et quasi rescripto tuo, mea confirmetur opinio. Sin vero aliter sentis, non me pudebit secus edoctam \noteL{receptui canere}{To sound a retreat.}.
+	\pend
+	\pstart
+		Dubitanti autem mihi, quid hac in re in universum statueres, \noteL{ansam praebuere}{\emph{Ansam praebere:} to give an opportunity, lit. to provide a handle.} tuae olim ad me datae litterae, in quibus postquam de me meisque studiis multa, ut soles, amanter ac honorifice depraedicasti, ita scribis: \emph{Nec forte expediat multas hoc vitae genus eligere; sufficere si nonnullae ad id speciali instinctu vocatae aliquando emineant.} \dots%\lettrineshiftL
+	\pend
+	\pstart[\unexpanded{\subsection[Rivét’s reply]{Nobilissimae et in omni virtutum genere excultissima virgini, Annae Mariae a Schurman, S. P.}}]
+		\dropcap{D}{ISSERTATIO}tua elegantissima pro tuo sexu, et ingeniorum muliebrium ad omnes liberales artes et scientias capessendas aptitudine, virorum ingenia adaequante, forsan et superante, me aliquamdiu suspensum tenuit. Ab una parte pudebat \noteL{vadimonium deserere}{To fail to make an appearance, originally in the sense of failing to appear at court when summoned.}, et causam nostram indefensam relinquere. Ab altera ingratum erat ei adversari, cui potius manum dare animus esset, a qua etiam vinci iucundam et suavissimum, praesertim cum indagas summa cum modestia, nec tamen quidquam omittas eorum quae ad causam tuam faciunt, oratione disertissima et argumentis densa. \dots
+	\pend
+	\endnumbering
+\end{Leftside}
+\begin{Rightside}
+	\beginnumbering
+	\fancysectionR{Letters}{\vspace{.4em}by Anna Maria van Schurman\\\vspace{-1em}and André Rivet}
+	\pstart[\unexpanded{\subsection[To André Rivet]{To the illustrious man, the father venerable in Christ, Sir André Rivet, greetings}}]
+		\adjustright
+		O vir reverende et in Christo venerande pater, maxime laetor quod beneficia, quae nepti tuae confero, tibi placeant. Parva sunt haec beneficia, si ea sola consideraverimus: sed si etiam amorem inter nos habitum consideremus, prorsus nihil feci quod non tibi debui ob amicitiam nostram. \dots
+	\pend
+	\pstart
+		Magni momenti tuum iudicium esse puto. Nam si quid male intellexero, dubito et vix progredi possum. In quadam huiusmodi gravi difficultate, quae pertinet ad officium et condicionem feminarum, iam diu cupio te meam opinionem confirmare, nam tua approbatio esset mihi optima et gloriosa. Si tamen dissentis a me, libenter sententiam meam mutabo, si melius me docueris.
+	\pend
+	\pstart
+		Dubitabam quae esset tua sententia in hac re, sed tua epistula ad me nuper scripta occasionem mihi dedit tuae sententiae intellegendae. Postquam me et mea studia benigne laudavisti, ut soles, ita scribis: \emph{Fortasse non multas feminas debere talem vitam eligere; sufficere si aliquot feminae ita vivant ob insolitum ingenium.} \dots%\lettrineshiftR
+	\pend
+	\pstart[\unexpanded{\subsection[To van Schurman, from André Rivet]{To the most noble lady, refined in every kind of virtue, Anna Maria van Schurman, greetings}}]
+		Aliquamdiu dubitabam quomodo responderem tuae dissertationi elegantissimae pro tuo sexu, et pro aptitudine feminarum ad omnes artes liberales et scientias suscipiendas, quam aptitudinem dicis esse tam magnum, et fortasse maiorem, quam virorum ingenia. Ab una parte pudebat me aufugere, et causam meam indefensam relinquere. Ab altera parte nolebam tibi adversari, cui potius me dedere mallerem. Iucundum et suavissimum esset etiam a te vinci, praecipue cum me vincas summa cum modestia, nihil tamen omittas quod causam tuam adiuvat, et orationem eloquentem et argumentis densam fecisti.\dots
+	\pend
+	\endnumbering
+\end{Rightside}
+\end{pages}
+\Pages
+
+%***************************************************
+%***************************************************
+%                      DRAMA
+%***************************************************
+%***************************************************
+
+\longpartfalse
+\partpg{Drama}%
+{The Renaissance saw a revival of classical Latin drama as the plays of Terence, Plautus, and Seneca were more carefully studied and emulated. Almost a new genre burst onto the scene with the “Christian Terence” movement of the 16\textsuperscript{th} century, as both Protestants and Catholics wrote classical plays on Bible stories, saints’ lives, and other material which they believed more edifying and suitable for schoolchildren than were the pagan and often obscene plays of the Romans. Such are the selections from Gnapheus and Grimald. However, drama on classical and contemporary topics was popular as well. Frischlin provides an interesting example of both.}%
+{\textbf{Wilhelm Gnapheus} (1493–1568) was a Dutch schoolmaster who in the 1520’s wrote \emph{Acolastus} (c. 1525), a Terentian school play which retells the parable of the prodigal son. Its international success spawned an outpouring of biblical plays by other humanists, Protestant and Catholic alike.\partparskip%
+\textbf{Nicholas Grimald} (1519–1562) was an English poet and dramatist. His tragedy \emph{Archipropheta} (1548) expands on the story of John the Baptist, mixing in elements of farce and romance in good English fashion.\partparskip%
+\textbf{Philipp Nicodemus Frischlin} (1547–1590) was a German humanist plagued throughout his life by his own immoral conduct, but admired for his poetic skill. His comedy \emph{Iulius Redivivus} (1584) is a satire on modern life, describing a visit by Julius Caesar and Cicero to the Germany of Frischlin’s day.}%
+{0.95}{-1.5em}{0pt}{Hans Holbein, \emph{The Expulsion}, from his book of woodcuts\\known in English as \emph{Dance of Death}, 1538.}
+
+%---------------------------------------------------
+%                  IULIUS REDIVIVUS
+%---------------------------------------------------
+
+\renewcommand{\cL}[1]{{\itshape#1.} }
+\renewcommand{\cR}[1]{{\normalfont#1.} }
+
+\begin{pages}
+\begin{Leftside}
+	\beginnumbering
+	\fancysection{Julius Revived}{Philipp Nicodemus Frischlin}{Iulius Redivivus}{auctore Nicodemo Frischlino}
+	\pstart[\unexpanded{\subsection[Prologue]{Prologus}}]
+		\dropcap{S}{I}quid salutis \noteLlemma{adferrent, qui ex inferis\\
+		Veniunt, id vobis ego principio dicerem}{Potential subjunctives expressing cautious assertions or wishes. See \emph{AG} §447.}{adferrent \dots\ dicerem}.\\
+		Malum ne vobis imprecer, vestra \rlap{efficit}\\
+		{\sma Aequanimitas. Itaque quid veniam, \rlap{edisseram,}}\\
+		Et \noteL{quid rei vos velim}{Like the Plautan expression\\ \emph{Quid me vis?} “What is it?”}. Namque dubio procul\\
+		Mirabuntur aliqui, ex hac hominum copia,\\
+		Qui nostri honoris ergo adsunt, quae causa sit,\\
+		Quod prologi partes mihi Mercurio sint datae,\\
+		Deo ficticio et vaniloquo, ut multi autumant.\\
+		Nam ubi res in Christiano agitur proscaenio,\\
+		Locum esse negant profanis gentium deis.\\
+		Ego vero ut me vere veracem esse doceam,\\
+		Non vaniloquum, rem veram dicam ab initio.
+	\pend
+	\pstart\noindent
+		Mihi enim, qui nunc aliquot mille annis luridae\\
+		Mortis comes sum, facta moresque omnium\\
+		Hominum magis magisque innotescunt fere\\
+		Cottidie. Quod ut verum esse omnes intellegant\\
+		Qui adsunt, quaero ex vobis, quis sit vestrium omnium\\
+		Qui hodie meditatus sit de mortis horula,\\
+		Et se vel cras posse mori cogitaverit?\\
+		Nemo est. Tacetis. Verax sum: vera initio\\
+		Statim dixi, uti me dicturum esse dixeram.\\
+		Quid vero, si hoc anno de morte serio\\
+		Apud vos numquam cogitastis? Hem, tacent.\\
+		Verax sum. Quid si aliqui reperiatur hodie\\
+		Qui toto tempore, quo vitae aevum transigunt,\\
+		Numquam rationem mortis suae subduxerint?\\
+		Sat habeo. Nam veracem esse ostendi palam.
+	\pend
+	\pstart\noindent
+		Nunc quid poetae nomine adferam huc novi,\\
+		Paucis expediam. Marcus Cicero et Iulius\\
+		Caesar apud Ditem patrem, regem Tartari,\\
+		Meis obtinuere precibus, sibi ut duce\\
+		Mercurii virgula, liceret hanc novam\\
+		Lustrare oculis Germaniam. Nam cupiditas\\
+		Illos invasit has videndi fertiles\\
+		Terras et urbes, et homines ipsos novos:\\
+		Novi enim cottidie veniunt ad inferos\\
+		Ex hac Germania homines, quorum Iulius\\
+		Similes se olim vidisse in his locis negat:\\
+		Stygia palus vix sufficit ad nimiam sitim\\
+		Illorum restinguendam, adeo misere aestuant,\\
+		Quoniam vini assiduo potu, ardorem sibi\\
+		Ipsi per venas contraxere maximum.\\
+		Sed de hoc nihil in praesenti. Nam haec comoedia\\
+		In laudem maxime facta est Germaniae.
+	\pend
+	\pstart\noindent
+		Quod si quis est, qui quaerat, quomodo consequi\\
+		Hoc potuerim, rursus ut ab inferis meo\\
+		Ductu huc redeant incorporatae animae?\\
+		Is hunc caduceum inspiciat. Nam virgula\\
+		Hac alias animas Orci sedibus evoco,\\
+		Alias sub pallidum deduco Tartarum.\\
+		Hac \noteL{morte resigno hominum oculos}{Based on Verg. Aen. 4.244: (Mercurius) \emph{lumina morte resignat}. Why Mercury opens the eyes of the dead has been debated, but possibly this refers to his restoring life to the body of someone brought back from death (e.g. Pelops, Penelope, and Protesilaus).}, hac aufero,\\
+		Hac reddo somnos, hac rapidum trano aerem.\\
+		Quantum ad Ciceronem, bene nunc ipsi convenit\\
+		Cum Caesare, nec male cum Cicerone Caesari.\\
+		Nam discidium, quod illis in vita fuit,\\
+		Pluto composuit, mandato silentio.
+	\pend
+	\pstart\noindent
+		Nunc, quid poetae nomine oratos velim,\\
+		Attendite. Si quem ille vel in fabulis, vel in\\
+		Orationibus laesit malum, hunc monet,\\
+		Si malus est, ut tandem malus esse desinat:\\
+		Si bonus, ut quod dictum in homines fuit malos,\\
+		Id ad se pertinere non credat. Equidem,\\
+		Reprehensiones ferre possunt, qui boni\\
+		Sunt: qui mali, non possunt. Verum haec fabula,\\
+		Ut dixi, in laudem conscripta est Germaniae.\\
+		Qui bonus est, is de virtute sua gaudeat:\\
+		Qui malus est, is de laudem bonorum ad se nihil\\
+		Iam pertinere noverit. Quod reliquum est,\\
+		Animis adeste aequis, et cum silentio,\\
+		Ut quid Cicero et Caesar novi adferant\\
+		Possitis cognoscere. Ego revertar in forum,\\
+		Ut illic praesim mercibus. Si quis opera\\
+		Mea forte indigebit in hoc proscaenio,\\
+		Faxo, ne opem meam frustra imploraverit.\\
+		Tantum est. Valete. Adeste cum silentio.\\
+	\pend
+	\pstart[\unexpanded{\subsection[Act 1, Scene 1]{Actus I. Scena I.\\{\normalfont\itshape Caesar, Cicero}}}]
+		\dropcap{M}{AGNIS,}diurnis, nocturnisque itineribus\\
+		{\sma In hunc locum contendimus, Marce \rlap{Cicero.}}\\
+		\cL{Ci}Ego mehercle iam defatigatus, animi\\
+		Et corporis laboribus, cupio parum\\
+		Quiescere. Verum occurrit \noteL{subin}{i.e. \emph{subinde}.} aliquid novi,\\
+		Quod me defessum recreet atque reficiat.\\
+		Nam tot amoenissimas urbes, tot oppida\\
+		Pulcherrima, tot arces impositas montibus\\
+		Altissimis, tot vicos, tot agros fertiles,\\
+		Satis ego admirari nullo possum modo.\\
+		Sed ubinam, mi Caesar, iam consistimus?\\
+		Aut quam tenemus hanc partem Germaniae?\\
+		\cL{Cae}Quidquid vides terrarum, Cicero, id a feris\\
+		Et barbaris olim tenebatur poplis.\\
+		Nam quibus ego temporibus in his fui locis,\\
+		Non praesidium, non castellum, non oppidum\\
+		Erat: non agri perculti, non vineae:\\
+		Sed maxima civitatibus laus tunc erat,\\
+		Vastatis finibus magnas undique loci\\
+		Habere solitudines.\\\skipnumbering\dots
+	\pend
+	\pstart\noindent
+		\cL{Cae}Sed tu nondum dixti, \noteL{qui}{Old abl. form of \emph{quo}, i.e. \emph{quomodo}.} placuerit tibi\\
+		\noteL{Argentoratum}{Modern-day Strasbourg, France.}, urbs maxima et validissima,\\
+		In finibus Trebocum, et in istius loci\\
+		Regione fertilissima. \cL{Ci}Perquam optime.\\
+		\cL{Cae}Et natura et munitionibus oppidum est\\
+		Tutum a periculo. \cL{Ci}Sic apparet equidem.\\
+		\cL{Cae}Pulcherrima haec totius urbs Germaniae:\\
+		Quae et praesidio, et ornamento sit patriae.\\
+		\cL{Ci}Sic arbitror. Verumtamen alias quoque\\
+		Urbes vidimus, et natura loci, et manu,\\
+		Et operibus admirandis munitissimas.\\
+		\cL{Cae}Ita est, sed huius civitatis maxima est\\
+		Auctoritas, quod et tormenta plurima\\
+		Habet: et scientia atque usu rei bellicae\\
+		Longe antecedit ceteras. \cL{Ci}Videlicet.\\
+		\cL{Cae}homines in ea sunt perveteris potentiae.\\
+		\cL{Ci}Adde etiam industriae. Nam magnos opifices\\
+		Et solertes in ea esse artifices, huic rei\\
+		Tam magnifice, et affabre, et antiquo artificio\\
+		Caelata turris indicio est, quae se altius\\
+		E terra attollit, quam turris Babylonia.\\\skipnumbering\dots
+	\pend
+	\pstart\noindent
+		\cL{Ci}Credisne vero, nos sat tutos fore in his locis?\\
+		\cL{Cae}Immo, quoniam hospites violare nefas putant,\\
+		Qui quaeque de causa ad eos forte venerint,\\
+		Ab iniuria eosdem prohibent, sanctosque habent,\\
+		His omnium domus patent. \cL{Ci}Dicis probe.\\
+		\cL{Cae}Etiam victus communicatur. \cL{Ci}Gestio\\
+		Mehercle, nam mille et sexcentos annos fame\\
+		Atque inedia conficior. Sed proh Iuppiter!\\
+		{\sma\cL{Cae}Quid est? \cL{Ci}Qualem hominem video? Quem \rlap{virum?}}\\
+		{\sma\cL{Cae}Ubinam? \cL{Ci}Huc ad nos recta pergit homo \rlap{ferreus,}}\\
+		Aut Romulus alter, aut certe ipse Mars. \cL{Cae}Nova \rlap{est,}\\
+		Et inusitata viri species. Sine, Cicero,\\
+		Observemus quo abeat, aut quam rem istic agat.
+	\pend
+	\endnumbering
+\end{Leftside}
+\begin{Rightside}
+	\beginnumbering
+	\fancysectionR{Julius Revived}{by Philipp Nicodemus Frischlin}
+	\pstart[\subsection{Prologue}]
+		\adjustright\noindent
+		Primum vobiscum considerare volo num vobis prodesse possint homines qui ex regione mortuorum veniunt. Quaeso, spectatores benevoli sitis, ne maledictis vos puniam. Explicabo cur adsim, et cur vobiscum loquar. Nam sine dubio nonnulli vestrum, qui nos spectandi causa adestis, miramini cur ego Mercurius hunc prologum eloquar, ego deus fictus et mendax, ut multi putant. Hi homines negant deos paganorum pertinere ad scaenam Christianam. Sed ego, ut me non mentiri ostendam, verum dicam ab initio.
+	\pend
+	\pstart
+		Nam aliquot milibus annorum cum morte pallida versor \alt{aliquot milia annorum cum morte pallida dego}, ergo paene cottidie plura disco de rebus gestis et de moribus hominum. Quam scientiam interrogatione demonstrabo. Ecquis ex vobis omnibus hodie consideravit horam mortis suae, et cogitavit se etiam cras posse mori? Nemo se praebet. Nihil dicitis. Itaque non mentior: vera ab initio statim dixi, id quod me facturum esse dixeram. Amplius rogo: hocne anno de morte serio cogitavistis? Ehem, tacetis! Non mentior. Et amplius rogo: umquamne in tota vita mortem vestram consideravistis? Satis est: me verum dicere aperte demonstravi.
+	\pend
+	\pstart
+		Nunc quid novi \alt{qualem novam comoediam} per poetam Frischlinum vobis ostendam, paucis verbis explicabo. Adiuvavi Marcum Ciceronem et Iulium Caesarem suadere Plutoni regi inferorum, ut eos sineret hanc novam Germaniam invisere, meo baculo ducente. Volebant enim videre has fertiles terras et urbas, et homines hodiernos. Nam novi homines ex hac hodierna Germania cottidie veniunt ad Tartarum, quos Iulius negat esse similes eorum Germanorum, quos se vivo \alt{inter tempus suae vitae} noverat: adeo siti ardent, ut plus quam Stygiam paludem bibere cupiant, nam tantum vinum biberunt, ut ardorem in venis suis sentiunt. Sed de hoc vitio nihil nunc dicere debeo, nam haec comoedia laudat Germaniam.
+	\pend
+	\pstart
+		Vultisne scire quomodo efficere potuerim, ut rursus ab inferis ducerem animas corporibus carentes \alt{sine corporibus}? Ecce baculus meus: hoc baculo interdum animas ex inferis evoco, interdum eas ad pallidos inferos duco. Hoc baculo aperio oculos hominum mortuorum. Hoc baculo aufero et reddo somnia. Hoc baculo per aerem volo. Quod ad inimicitiam horum duorum hominum attinet, Cicero et Caesar nunc amici sunt. Nam Pluto iussit eos silere, ita ut reconciliarentur.
+	\pend
+	\pstart
+		Audite nunc ea quae in hac comoedia a Frischlino scripta dici volo. Attenti spectatores sitis. Si quis malus homo reprehandatur a Frischlino, ita Frischlin malum hominem monet ut aliquando melius se gerat \alt{melius vivat}. Boni autem homines non debent credere hanc reprehensionem ad se pertinere. Sane, boni homines reprehensiones ferre possunt, sed mali homines non possunt. Tamen haec comoedia, ut dixi, scripta est ut laudet Germaniam. Boni de virtute sua laudata gaudere debent, sed mali intellegere debent hanc laudem non ad se pertinere. Denique, tranquilli et taciti attendite, ut possitis intellegere quid novi Cicero et Caesar ostendant. Ego redibo in forum, ut ibi emptioni et venditioni praesideam. Si quo casu aliquis vestrum auxilium meum desideret, curabo ut auxilium adferam. Omnia dixi. Valeatis. Tacete et attendite.
+	\pend
+	\pstart[\subsection{Act 1, Scene 1\\{\normalfont Caesar, Cicero}}]
+		\adjustright\noindent
+		Huc pervenimus, Marce Cicero, longis itineribus, diurnis et nocturnis. \cR{Ci}Di immortales, valde defessus sum quod animo et corpore ita strenue laboramus. Quiescere volo paulisper. Sed subito aliquid animadverto, quod vires meas renovare potest: maxime admiror has multas pulcherrimas urbes, multa castella montibus altissimis imposita, multos oppidulos, multos agros uberes. Ubi gentium sumus, amice? Quae est haec regio Germaniae? \cR{Cae}Totam hanc terram, Cicero, fera animalia et barbari antiquis temporibus incolabant. Nam cum ego olim hic versarer, Germania his rebus carebat: nec munimenta erant, nec castella, neque oppida, neque agri quos agricolae bene colunt, nec vineae: sed rex laudabatur, si regionem magnam et vacuam regeret, quam vastavisset \alt{depopulatus esset}. \dots
+	\pend
+	\pstart
+		\cR{Cae}Placetne tibi Argentoratum? Id nondum dixisti. Argentoratum est urbs maxima et potentissima, sita in regione quam Alsati incolunt, eiusque regionis in parte fecundissima. \cR{Ci}Valde mihi placet. \cR{Cae}Haec urbs est tutum a periculo propter naturam loci, et propter moenia et alias munitiones. \cR{Ci}Ita plane videtur. \cR{Cae}Argentoratum est urbs pulcherrima totius Germaniae, nam Germaniam defendit et ornat. \cR{Ci}Ita censeo. Sed et alias urbes vidimus tutas a periculo ob naturam loci, ob milites, et ob munitiones admirabiles. \cR{Cae}Ita est, sed Argentoratum ceteras urbes auctoritate superat \alt{maiorem auctoritatem habet quam ceteras urbes}, quia plures catapultas habet, et hi homines bello gerendo doctiores et peritiores sunt. \cR{Ci}Manifestum est. \cR{Cae}Hi homines iam diu sunt potentissimi. \cR{Ci}Etiam diligentissimi sunt. Ecce, turris illa indicat opifices et artifices huius urbis esse valde peritos. Nam turris splendide et perite insculpta est, secundum artem antiquam: et altior est, quam turris Babelis. \dots
+	\pend
+	\pstart
+		\cR{Ci}Erimusne satis tuti in hac regione? \cR{Cae}Immo, tutissimi. Nam his hominibus peccatum est violare hospites. Si alienus qualibet causa in eos incidit \alt{ad eos casu venit}, non sinunt eum noceri, et eum ut sanctum accipiunt \alt{tractant}. Licet alienis domicilia omnium hominum intrare. \cR{Ci}Placet mihi haec descriptio. \cR{Cae}Etiam cibos alienis dant. \cR{Ci}Valde cupio hoc beneficium, nam mille et sexcentos annos non comedi, et maximopere esurio. Atat, di immortales! \cR{Cae}Quid est? \cR{Ci}Cuiusmodi hominem video? Quis est ille? \cR{Cae}Ubi!? \cR{Ci}Homo ferreus huc ad nos recta via venit, aut fortasse est deus quidam bellicus: Romulus alter, aut Mars. \cR{Cae}Aspectus huius viri est mira et insolita. Cicero, quidni observemus quo ambulet, aut quid ille faciat.
+	\pend
+	\endnumbering
+\end{Rightside}
+\end{pages}
+\Pages
+
+%***************************************************
+%***************************************************
+%                ELEGIACS AND HYMNS
+%***************************************************
+%***************************************************
+
+\longparttrue
+\partpg{Elegiacs \& Hymns}%
+{Renaissance humanists mastered a wide range of poetic meters used for a variety of purposes. Poems in the simple elegiac and iambic meters are here presented. Much elegiac poetry in the Renaissance was occasional, celebrating public occasions or individuals, but here we have selected poetry that is less occasional and consequently easier and more interesting to the non-historian. Johnston, de Montenay, and Fabricius provide examples of religious poetry in different genres, and from Owen we have witty epigrams on various topics. A selection of longer elegiacs, and a closer imitation of a classical antecedent, comes from Hessus.\partparskip%
+\textit{A note on poetic meter: The poems selected in this section consist of elegiac couplets, except for the hymns of Fabricius, which are written in iambic dimeter. See Appendix B for an introduction to these meters, and for help reading these selections.}}%
+{\textbf{Arthur Johnston} (c. 1579–1641) was a physician and one of Scotland’s leading Latin poets. Among his works was a complete set of Psalm paraphrases (1637), translations of the Psalms into classical Latin verse. Although Johnston’s Scottish predecessor George Buchanan (1506–1582) was the acknowledged master of this genre, Johnston’s work is simpler and more suitable for students.\partparskip%
+\textbf{Georgette de Montenay} (1540–1581) was a lady-in-waiting to Jeanne d’Albret, Queen of Navarre. In her \emph{Emblemes ou devises chrestiennes} (1567), written in French but re-issued with two anonymous sets of Latin poems (1584 and 1619), she expresses religious ideas through an emblem book, a humanist genre in which images are presented together with proverbs or short moral poems.\partparskip%
+\textbf{Georg Fabricius} (1516–1571) was a German Lutheran poet and historian. In addition to his historical studies and editions of classical authors, he published editions of late antique and medieval Christian Latin poetry. Nearly as voluminous were his original hymns, which he collected and published in 1560.\partparskip%
+\textbf{John Owen} (c. 1564–1622) was an English schoolmaster and poet who was admired even on the Continent as “Martialis Britannicus” for his epigrams, brief elegiac poems packed with witty wordplay and satiric punch.\partparskip%
+\textbf{Helius Eobanus Hessus} (1488–1540) was a German poet whose most interesting work is \emph{Heroides Christianae} (1514), fictional letters by famous women in imitation of Ovid’s \emph{Heroides}.}%
+{1}{-1em}{3pt}{Egbert van Panderen, \emph{David Plays his Harp}, engraving, c. 1620.}
+
+%---------------------------------------------------
+%                 EMBLEMATA CHRISTIANA
+%---------------------------------------------------
+
+\setlength{\fboxrule}{0pt}
+
+\begin{pages}
+\begin{Leftside}
+	\beginnumbering
+	\fancysection{Christian Emblems}{Georgette de Montenay}{Emblemata Christiana}{auctore Georgia Montanea}
+	\pstart[\unexpanded{\subsection[Sed futuram inquirimus]{\hfill\includegraphics[width=.95\textwidth]{_img/emblemata/emblema12.jpg}\hspace*{\fill}}}]
+		\dropcap{C}{\sm AELICA}\setline{1}{\sm suspirans iamdudum ad regna \rlap{viator}\\
+		\hspace*{1em}Ipse suas aliis sponte relinquit opes.\\
+		Faenore cum toto teneant, nihil invidet, huius\\
+		\hspace*{1em}Instabiles mundi cum sciat esse domos.}
+	\pend
+	\endnumbering
+\end{Leftside}
+\begin{Rightside}
+	\beginnumbering
+	\fancysectionR{Christian Emblems}{by Georgette de Montenay}
+	\pstart[\subsection{Sed futuram inquirimus}]
+		\adjustright\noindent\setline{1}\edtext{}{\linenum{|0|||0}\lemma{Sed futuram inquirimus}\Dfootnote{We seek a future city. “Non enim habemus hic manentem civitatem sed futuram inquirimus.” (Heb. 13:14, Vulgate)}}Viator, qui regnum Caeli diu desiderat, sinit alios suis bonis frui \alt{sua bona possidere}. Etsi homines haec bona cum toto lucro habeant, viator non eis invidet, scit enim domos huius mundi esse instabiles.
+	\pend
+	\endnumbering
+\end{Rightside}
+\end{pages}
+\Pages
+
+%***************************************************
+%***************************************************
+%                      EPIC POETRY
+%***************************************************
+%***************************************************
+
+\longpartfalse
+\partpg{Epic Poetry}%
+{Many Renaissance poets aspired to be the new Virgil, and one of their most common undertakings was to transpose the Christian story into epic mode, a tradition that goes all the way back to the late antiquity. In Ross we see a more overt imitation of Virgil than was usual, while Marulić’s epic is more typically diverse and loose in its classical borrowings. Of a different tenor entirely is Herbert’s short anti-epic.\partparskip%
+\textit{A note on poetic meter: The poems selected in this section are written in dactylic hexameters. See Appendix B for an introduction to this meter, and for help reading these selections.}}%
+{\textbf{Alexander Ross} (1590–1654) was a Scottish chaplain of King Charles I who wrote, among many other works now forgotten, the epic cento \emph{Christias} (1634), which tells the story of Israel and Christ in thirteen books almost completely in the words of Virgil.\partparskip%
+\textbf{Marko Marulić} (1450–1524) was a Croatian poet whose epic masterpiece \emph{Davidias} (c. 1517), unpublished in his lifetime, was lost until rediscovered in manuscript in the 20\textsuperscript{th} century. He was an admirer of Erasmus, and like Erasmus he remained a Roman Catholic who worked toward spiritual renewal.\partparskip%
+\textbf{George Herbert} (1593–1633) was an English priest and poet now known for his English poetry, but his equal skill in Latin is attested by his brother’s remark that his English poetry fell “far short” of his Latin poems. His longest Latin poem is a miniature mock epic of 101 lines titled \emph{Inventa Bellica} (c. 1623) or, in a later revision, \emph{Triumphus Mortis}. It was written as a parody of \emph{Inventa Adespota}, a poem by his contemporary Thomas Reid (died 1624) on the invention of printing. Herbert’s poem, in very anti-epic fashion, inveighs against the invention of war.}%
+{0.97}{-1.7em}{3pt}{Albrecht Dürer, \emph{Saint Michael Fighting the Dragon}, part of\\his \emph{Apocalypse} series of woodcuts, 1498.}
+
+%---------------------------------------------------
+%                      CHRISTIAS
+%---------------------------------------------------
+
+\begin{pages}
+\begin{Leftside}
+	\beginnumbering
+	\fancysection{The Christiad}{Alexander Ross}{Christias}{auctore Alexandro Rossaeo}
+	\pstart[\unexpanded{\subsection[Book 1]{Liber I.}}]
+		\dropcap{I}{\sma LLE}\setline{1}\sma \noteLlemma{\noteLlemma{ego qui quondam gracili modulatus \rlap{avena}\\
+		\sm Carmen}{The alternate beginning of the \emph{Aeneid} describes Virgil turning from pastoral to georgic to epic poetry. Here likewise Ross refers to his earlier poetry. Perhaps the first group of poems, those which he “piped on a slender reed” (\emph{gracili modulatus avena}), includes his \emph{Three Decads of Divine Meditations \dots With a commendation of the private Countrey life} (c. 1630).}{Ille \dots\ Carmen}, et \noteLlemma{Aegypto egressus per \rlap{inhospita saxa}\\
+		\sma Perque domos Arabum vacuas et inania \rlap{regna}\\
+		\normalsize Deduxi Abramidas}{For his second item of earlier poetry, Ross refers to his epic poem \emph{Rerum Iudaicarum ab exitu ex Aegypto Libri Tres} (1617).}{Aegypto \dots\ Abramidas}, at nunc horrentia \rlap{Christi}\\
+		Acta, Deumque cano, caeli qui primus ab oris\\
+		Virginis in laetae gremium descendit, et orbem\\
+		Terrarum invisit profugus, Chananaeaque venit\\
+		Littora, multum ille et terra iactatus et alto\\
+		Vi superum, saevi memorem Plutonis ob iram;\\
+		Multa quoque in monte est passus dum conderet urbem.\\
+		Nam ligno incubuit, dixitque novissima verba,\\
+		Et sacram effudit multo cum sanguine vitam,\\
+		Atque ausus penetrare sinus nigrantis Averni,\\
+		Sed tandem patrias victor remeavit ad oras.\\
+		Evertitque deos Latii, et genus omne Latinum\\
+		Albanosque patres atque altae moenia Romae.\\
+		Musa mihi causas memora, quo numine laeso,\\
+		Quidve dolens rex ipse deum tot volvere casus\\
+		Insignem pietate virum, tot adire labores\\
+		Impulit? An tantas caeli mens ardet in iras?}{These lines are modeled on Verg. Aen. 1.1–11, in addition to the alternate first four lines whose authenticity is now doubted. Ross borrows many of Virgil’s verses verbatim, or nearly so: lines 1 (Aen. alternate 1.1), 3 (Aen. 6.269), 5 (Aen. 1.1), 8-10 (Aen. 1.3–5), 11 (Aen. 4.650), 15–16 (Aen. 1.6–7), and 17–20 (Aen. 1.8–11). But even in verses not borrowed wholesale, phrases are lifted from Virgil’s works.}{Ille \dots\ iras}
+	\pend
+	\endnumbering
+\end{Leftside}
+\begin{Rightside}
+	\beginnumbering
+	\fancysectionR{Christias}{by Alexander Ross}
+	\pstart[\subsection{Book 1}]
+		\adjustright\noindent
+		Ego sum ille, qui olim carmina calamo \alt{tibia} tenui cecini \alt{qui olim carmina levia et lepida scipsi}. Et aliud carmen scripsi de filiis Abrahamis \alt{de Israelitis}, in quo eos duxi ex Aegypto  per deserta loca. Sed nunc carmen scribo de rebus a Christo gestis \alt{de Christi factis}, de Christo homine divino, qui a limitibus caeli in gremium Mariae virginis laetae descendit, qui ad mundum venit ut scelestus, ad terram Iudaeam venit. Dei, propter iram Plutonis iniurias non obliti \alt{qui iniurias non oblitus erat}, hunc hominem agitaverunt per terram et per mare. Is maxime excruciatus est in monte, cum urbem caelestem conderet. Nam cruci adfixus est, ubi ultima verba dixit. Ibi mortuus est, et eius sanguis effluxit. Deinde ausus est descendere ad inferos, sed postremo vicit et redivit ad caelum. Deos, gentem, patres antiquos, et moenia Romanorum deiecit \alt{vixit}. Cur, Musa, rex deorum pium virum coegit ut tot mala pateretur? Quomodo Deus laesus est, qua iniuria offensus est? Adeone \alt{Tantumne} irascitur Deus?
+	\pend
+	\endnumbering
+\end{Rightside}
+\end{pages}
+\Pages
+
+%***************************************************
+%***************************************************
+%                      APPENDICES
+%***************************************************
+%***************************************************
+
+%---------------------------------------------------
+%                      APPENDIX A
+%---------------------------------------------------
+
+\titleformat{\part}[block]{\vspace{-2.05em}\huge\centering}{}{0em}{}
+\titlespacing{\part}{0em}{0em}{0em}
+\newcommand{\hi}{\hangindent=2.7em}
+\newcommand{\dashes}{—\hspace{-1.2pt}—, —\hspace{-1.2pt}—\ }
+\newcommand{\dash}{—\hspace{-1.2pt}—,\ }
+\newcommand{\ssm}{\fontsize{16.5pt}{17pt}\selectfont}
+\selectlanguage{english}
+\small
+\begin{singlespace}
+\begin{en}
+
+\thispagestyle{empty}
+\fancyhead[CE]{Appendix A}
+\fancyhead[CO]{Resources}
+\part[Appendix A: Resources]{Appendix A:}
+{\LARGE\centering Resources for the Latin Student\par}
+
+\vspace{1.5em}
+\setlength{\parskip}{1.3em}
+\noindent
+\emph{Perseus Word Study Tool:} \url{perseus.tufts.edu/hopper/morph?la=la}\\
+When you encounter an unfamiliar Latin word, or you are not sure what its ending means, Perseus can parse the word for you, and it also shows its dictionary entry. This is your most useful resource as you read the texts in this volume. The translations listed in Appendix D should be your last resort in a difficult passage.
+
+\noindent
+\emph{Work toward Latin fluency:} \href{https://www.circeinstitute.org/blog/classical-polyglot-everything-you-need-start-learning-latin-and-greek}{www.circeinstitute.org/blog/classical-polyglot-everything-you-need-start-learning-latin-and-greek}{\fleur XX}\\
+In this short piece I describe the practices and resources (many of them free) that have helped me most toward fluency in Latin.
+
+\noindent
+\emph{Learn more about early modern Latin.} Delve into these reference works at your university library:
+
+\vspace*{.2em}
+\setlength{\parskip}{.5em}
+\noindent Ford, Bloemendal, \& Fantazzi, \emph{Brill’s Encyclopaedia of the Neo-Latin World} (2 vols., 2014).
+
+\hi\noindent Knight \& Tilg, \emph{The Oxford Handbook of Neo-Latin} (Oxford, 2015).
+
+\hi\noindent Jozef IJsewijn, \emph{Companion to Neo-Latin Studies, Part 1: History and Diffusion of Neo-Latin Literature} (Leuven, 1990).
+
+\vspace*{.5em}
+\noindent
+Read more about the works included in this volume in my blogging, collected at \url{lectiohumana.com}.
+
+\vspace*{\fill}
+
+%---------------------------------------------------
+%                      APPENDIX B
+%---------------------------------------------------
+
+\clearpage
+\setlength{\parskip}{0em}
+%\newgeometry{left=1.2in, right=1.2in, top=1in, bottom=0.9in}
+\thispagestyle{empty}
+\fancyhead[CE]{Appendix B}
+\fancyhead[CO]{Poetry Cheat Sheets}
+\part[Appendix B: Poetry Cheat Sheets]{Appendix B:}
+{\LARGE\centering Poetry Cheat Sheets\par}
+
+\vspace{1.5em}
+\setlength{\parskip}{1em}
+\noindent
+If you are new to Latin poetry, you should first get the hang of poetic meter, the rhythms of poetry. The meters of the poetry in this volume can be divided into two families.
+
+\noindent
+I. The \emph{dactylic} family includes the \emph{hexameter} of epic poetry and the closely-related \emph{elegiac couplet} used in all of the lyric poetry in Part 5 except for the hymns by Fabricius. A good introduction to the hexameter is provided by Benjamin Johnson in two videos explaining the essential skill of scanning a verse for long and short syllables: \url{youtu.be/cGF47JT0hPA}, and \url{youtu.be/qYD1zTfTHMY}. 
+
+\noindent
+But it is just as important to get an intuitive feel for hexameters and elegiacs by hearing them read aloud or sung, and by practicing it yourself. The easiest way to read hexameters aloud is by accenting the \emph{ictus} as the strong beat in a rhythm, as in these performances of lines from the \emph{Aeneid} by Johan Winge and the students of Andrew Sweet: \url{youtu.be/uoD0vjQidrc} and \url{www.newhavenindependent.org/index.php/archives/entry/hip-hop_hexameter_}. See also the audio recordings linked below under “Reading or singing the meter” and accompanying each poetry excerpt in this appendix.
+
+\noindent
+II. The \emph{iambic} and \emph{trochaic} family is the meters of drama (Part 4) and hymns such as those by Fabricius (Part 5). The drama in this volume uses, for the most part, two meters.
+
+\noindent
+First, \emph{iambic senarii} are lines of six iambs. An iamb is a metrical foot whose second part is long and stressed. Again, accenting the \emph{ictus} is the easiest way to read these, and the effect is similar to the iambic pentameter poetry common in English:
+
+“The lády dóth protést too múch, methínks.”
+
+\noindent
+Likewise, here is the first line of the prologue of \emph{Iulius Redivivus:}
+
+“Si quíd salútis ádferrént, qu-ex ínferís.”
+
+\noindent
+(The “i” in \emph{qui ex} is elided—it blends into the initial vowel sound of the following word.)
+
+\noindent
+Second, \emph{trochaic septenarii} are lines of seven trochees. A trochee is a metrical foot whose first part is long and stressed. If we read them by accenting the \emph{ictus}, they sound like trochaic meter in English:
+
+\hangindent=1.9em
+“Ín the Spríng a yoúng man’s fáncy líghtly túrns to thoúghts of lóve.”
+
+\noindent
+Here is the first line of Act 1, Scene 1 of \emph{Iulius Redivivus:}
+
+“Mágnis, diúrnis, nócturnísque ítinéribús.”
+
+\noindent
+(The “iu” sounds in \emph{diurnis} undergo synizesis—similar to elision, except that the vowel sounds that blend into one are in the same word. So instead of “di-ur-nis” with three syllables, the word is  pronounced “dyur-nis” with two syllables.)
+
+\noindent
+As both of the above examples show, the \emph{ictus} very often coincides with the naturally accented syllables of words. For a more detailed introduction to the meters of Latin drama, see \url{en.wikipedia.org/wiki/Metres_of_Roman_comedy}.
+
+\noindent
+The following pages provide selections from our poetic texts with helps for reading and understanding them. With enough practice, you will intuitively sense the meter and quickly see the meaning of a passage of poetry, but until then this answer key may be useful. Three helps are provided:
+
+\newcommand{\ol}[1]{$\overline{\mbox{#1\vphantom{T}}}$}
+\noindent
+1. \emph{Marking the meter}. Each line is marked to show long (\hspace{0.1em}¯\hspace{-0.1em}) syllables and the \emph{ictus} ( ´ ). Syllables are divided with a dot, and elided sounds are enclosed in parentheses, and square brackets indicate sounds split from a single letter over two syllables: for example, \emph{axis} is pronounced \emph{ác·sis} and marked as \ol{á{[}c{]}}-xis, and \emph{Troia} is pronounced \emph{Trói-ia} and marked \ol{Tró{[}i{]}}·ia.
+
+\noindent
+2. \emph{Reading or singing the meter}. Audio recordings are linked in which the poetry is read or sung in a way that easily conveys the meter. It may seem odd to sing Latin poetry, but Latin students have done it for many centuries, and the practice continues in the Accademia Vivarium Novum: \href{https://www.youtube.com/playlist?list=PL1273E23FBFFABCA8}{youtube.com/playlist?list=PL1273E23\\FBFFABCA8}. Here are two of their more basic tunes:\\[.4\baselineskip]
+Hexameters: \url{youtu.be/NbmkHu_uAk0}\\
+Elegaic couplets: \url{youtu.be/44LjyjnVHQU}%\\[.4\baselineskip]
+%The songs linked in the following pages are listed here: \href{https://lectiohumana.com/musica/}{lectiohumana.com/musica}.
+
+\noindent
+3. \emph{Re-ordering the words.} Understanding the meaning of poetry is often difficult because of its unusual word order, so on the opposite page the words of the poetic texts are put into prose word order.\\
+
+%\ornament{ot-swirls.jpg}{0.8}
+
+\cleartoevenpage
+\selectlanguage{latin}
+\renewcommand{\ol}[1]{$\overline{\mbox{#1\vphantom{Ǽ}}}$}
+\newcommand{\skipR}{\skipnumbering\\}
+\normalsize
+\begin{spacing}{1.9}
+\begin{pages}
+\begin{Leftside}
+	\beginnumbering
+	\pstart[\unexpanded{\subsection[Christian Emblems]{Emblemata Christiana}}]
+		\noindent
+		\skipnumbering\textit{Song:} \href{lectiohumana.com/musica/12.1-Caelica-suspirans.mp3}{lectiohumana.com/musica/12.1-Caelica-suspirans.\rlap{mp3}}\\
+		\ol{Cǽ}·li·ca \ol{sús}·\ol{pi}·\ol{ráns} \ol{iam}·\ol{dú}·\ol{d(um) ad} \ol{rég}·na vi·\ol{á}·tor,\\
+		\hspace*{1em}\ol{Ip}·se su·\ol{ás} a·li·\ol{ís} || \ol{spón}·te re·\ol{lín}·quit o·\ol{pés}.\\
+		\ol{Fǽ}·no·re \ol{cúm} \ol{to}·\ol{tó} te·ne·\ol{ánt}: \ol{ni(hi)l} \ol{ín}·vi·det, \ol{hú{[}i{]}}·ius\\
+		\hspace*{1em}\ol{Ín}·sta·bi·\ol{lés} \ol{mun}·\ol{dí} || \ol{cúm} sci·at \ol{és}·se do·\ol{mós}.
+	\pend
+	\pstart[\unexpanded{\subsection[The Christiad]{Christias}}]
+		\noindent
+		\skipnumbering\textit{Song:} \url{lectiohumana.com/musica/Christias-1.1-9.mp3}\\
+		\setline{1}\ol{Íl}·le e·go \ol{quí} \ol{quon}·\ol{dám} gra·ci·\ol{lí} mo·du·\ol{lá}·tus a·\ol{vé}·\ol{na}\\
+		\ol{Cár}·men, et \ol{Ǽ}·\ol{gyp}·\ol{t(o) é}·\ol{gres}·\ol{sús} per in·\ol{hós}·pi·ta \ol{sá}·xa\\
+		\ol{Pér}·que do·\ol{mós} A·ra·\ol{búm} va·cu·\ol{ás} et in·\ol{á}·ni·a \ol{rég}·na\\
+		\ol{Dé}·\ol{du{[}c{]}}·\ol{x(i) Áb}·ra·mi·\ol{dás}, at \ol{núnc} \ol{hor}·\ol{rén}·ti·a \ol{Chrís}·\ol{ti}\\
+		\ol{Ác}·ta, De·\ol{úm}·que ca·\ol{nó}, \ol{cæ}·\ol{lí} \ol{qui} \ol{prí}·mus ab \ol{ó}·\ol{ris}\\
+		\ol{Vír}·gi·nis \ol{ín} \ol{læ}·\ol{tǽ} gre·mi·\ol{úm} \ol{des}·\ol{cén}·dit, et \ol{ór}·bem\\
+		\ol{Tér}·\ol{ra}·\ol{r(um) ín}·\ol{vi}·\ol{sít} pro·fu·\ol{gús}, Cha·na·\ol{nǽ}·a·que \ol{vé}·nit\\
+		\ol{Lít}·to·ra, \ol{múl}·\ol{t(um) il}·\ol{l(e) ét} \ol{ter}·\ol{rá} \ol{iac}·\ol{tá}·tus et \ol{ál}·\ol{to}\\
+		\ol{Ví} su·pe·\ol{rúm}, \ol{sæ}·\ol{ví} me·mo·\ol{rém} \ol{Plu}·\ol{tó}·nis ob \ol{í}·ram.
+	\pend
+	\endnumbering
+\end{Leftside}
+\begin{Rightside}
+	\beginnumbering
+	\pstart[\subsection{Christian Emblems}]
+		\noindent\skipR
+		Viator, iamdudum ad regna caelica suspirans, ipse sponte aliis relinquit opes. Teneant cum toto faenore: nihil invidet, cum sciat domos huius mundi esse instabiles.
+	\pend
+	\pstart[\subsection{The Christiad}]
+		\noindent\skipR
+		\setline{1}Ille ego {[}sum{]}, qui quondam gracili avena carmen modulatus {[}sum{]}, et Aegypto egressus per inhospita saxa perque domos vacuas Arabum et inania regna deduxi Abramidas, at nunc acta horrentia Christi Deumque cano, qui primus ab oris caeli in gremium virginis laetae descendit, et profugus orbem terrarum invisit: ille multum et terra et alto iactatus, {[}ad{]} Chananaeaque littora venit.
+	\pend
+	\endnumbering
+\end{Rightside}
+\end{pages}
+\Pages
+\end{spacing}
+
+
+%---------------------------------------------------
+%                      APPENDIX C
+%---------------------------------------------------
+
+\clearpage
+\setlength{\parskip}{0em}
+\selectlanguage{english}
+\small
+\thispagestyle{empty}
+\fancyhead[CE]{Appendix C}
+\fancyhead[CO]{Texts and Translations}
+\part[Appendix C: Texts and Translations]{Appendix C:}
+{\LARGE\centering Texts and Translations\par}
+
+\vspace{2em}
+\raggedright
+\setlength{\parskip}{.3em plus .1em minus .1em}
+%\hypertarget{Dialogues-texts}{}
+%{\large I. Dialogues\\[.3\baselineskip]}
+%\hi Barclay, John, \emph{Argenis:} \url{books.google.com/books?id=rX_DZksDR9sC&pg=PA1}
+
+%\hi\dashes in English: \url{books.google.com/books?id=dKc5wxxa0UUC&pg=PA1}
+
+\hi Bebel, Heinrich, \emph{Facetiae:} \url{books.google.com/books?id=x-aErr5RlUoC&pg=PA37}
+
+%\hi Brylinger, Nicolaus, ed., \emph{Comoediae ac Tragoediae aliquot ex Novo et Vetere Testamento desumptae:} \url{https://books.google.com/books?id=ysk7AAAAcAAJ&pg=PP6}
+
+\hi Buchanan, George, \emph{Paraphrasis Psalmorum Davidis Poetica:} \url{www.philological.bham.ac.uk/buchpsalms/text1.html#1}
+
+\hi\dashes scan (not as clear, but explains each Psalm’s meter): \href{https://books.google.com/books?id=F68BAAAAYAAJ&pg=PA1}{books.google.com/books?id=F68BAAAAYAAJ\rlap{\&pg=PA1}}
+
+\hi\dashes in Latin prose: \url{philological.bham.ac.uk/ecphrasis/text1.html}
+
+\hi\dashes in English: \url{www.philological.bham.ac.uk/buchpsalms/trans1.html#1}
+
+%\hi\dash \emph{Iephthes} and \emph{Baptistes:} \url{books.google.com/books?id=7ZVEAQAAIAAJ&pg=PA15}
+
+%\hi\dashes in English verse: \url{archive.org/details/sacreddramastran00buchuoft/page/n7}
+
+\hi Calvin, John, and Philipp Melanchthon, letters excerpted in English by Philip Schaff: \url{www.ccel.org/ccel/schaff/hcc8.iv.xi.vi.html}
+
+\hi Castellio, Sebastian, \emph{Biblia Sacra:} \url{books.google.com/books?id=hSg-AAAAcAAJ&pg=RA3-PA35}
+
+\hi\dash \emph{Dialogi Sacri}: \href{https://books.google.com/books?id=UPtdAAAAcAAJ&pg=PA1}{books.google.com/books?id=UPtdAAAAcAAJ\rlap{\&pg=PA1}}
+
+\hi\dashes in English: \href{https://books.google.com/books?id=_gBnAAAAcAAJ&pg=PA1}{books.google.com/books?id=\_gBnAAAAcAAJ\rlap{\&pg=PA1}}
+
+\hi Corderius, Mathurin, \emph{Colloquia Scholastica:} \url{www.stoa.org/hopper/text.jsp?doc=Stoa:text:2003.02.0003:book=1:colloquium=1}
+
+%\hi\dashes selections in Latin/English parallel: \url{books.google.com/books?id=1KZkAAAAcAAJ}
+
+\hi Erasmus, Desiderius, \emph{Colloquia Familiaria:} \href{www.stoa.org/hopper/text.jsp?doc=Stoa:text:2003.02.0006:colloquium=37}{www.stoa.org/\linebreak hopper/text.jsp?doc=Stoa:text:2003.02.0006:colloquium=37}
+
+\hi\dashes selections in Latin/English parallel: \url{books.google.com/books?id=QHkZAAAAYAAJ&pg=PA13}
+
+\hi\dashes complete in English: \url{oll.libertyfund.org/titles/erasmus-the-colloquies-2-vols}
+
+%\hi\dashes \emph{Paraphrases in Novum Testamentum:} \url{books.google.com/books?id=j7QtmPycnMsC&pg=PA157}
+
+%\hi\dashes in English, vol. 1: \url{quod.lib.umich.edu/e/eebo/A16036.0001.001}
+
+%\hi\dashes in English, vol. 2: \url{quod.lib.umich.edu/e/eebo/A68942.0001.001}
+
+\hi Fabricius, George, \emph{Poemata Sacra:} \url{books.google.com/books?id=Wr7zCHKRH00C&pg=PA2}
+
+\hi Frischlin, Philipp Nicodemus, \emph{Iulius Redivivus} and other plays: \url{books.google.com/books?id=rLpeAAAAcAAJ&pg=PP3}
+
+%\hi Gerdes, Daniel, \emph{Introductio in Historiam Evangelii Seculo XVI. Passim per Europam Renovati:} \url{books.google.com/books?id=54fQXVJT7AcC&pg=RA1-PA1}
+
+\hi Gnapheus, Wilhelm, \emph{Acolastus} annotated in Latin for students: \url{books.google.com/books?id=hATGl5036qUC&pg=PT45}
+
+\hi\dashes in English: \url{quod.lib.umich.edu/e/eebo/A01349.0001.001}
+
+\hi Gott, Samuel, \emph{Nova Solyma:} \url{books.google.com/books?id=0dRcAAAAcAAJ&pg=PA1}
+
+\hi\dashes alternate scan, since both are occasionally unreadable: \url{books.google.com/books?id=815pAAAAcAAJ&pg=PA1}
+
+\hi\dashes in English, vol. 1: \url{archive.org/details/novsolymaidealci01novsuoft/page/76}
+
+\hi\dashes in English, vol. 2: \url{archive.org/details/novasolymaidealc02miltuoft/page/n13}
+
+\hi Grimald, Nicholas, \emph{Christus Redivivus} and \emph{Archipropheta} in Latin and English: \url{babel.hathitrust.org/cgi/pt?id=mdp.39015000621022;view=1up;seq=13}
+
+\hi Herbert, George, \emph{Triumphus Mortis} with an English translation following the Latin: \url{https://books.google.com/books?id=UPcyAQAAMAAJ&pg=PA217}
+
+\hi Johnston, Arthur, \emph{Psalmi Davidici} with a Latin prose translation: \href{https://books.google.com/books?id=d9BIAAAAcAAJ&pg=PA1}{books.google.com/books?id=d9BIAAAAcAAJ\rlap{\&pg=PA1}}
+
+%\hi Marulić, Marko, \emph{Davidias:} \url{web.archive.org/web/20071009132606/http://mudrac.ffzg.hr/~njovanov/d/dauidias.html}
+
+\hi Marulić, Marko, \emph{Davidias:} \url{https://marulianumsplit.files.wordpress.com/2018/10/davidias.pdf}
+
+\hi Marulić, Marko, \emph{Davidias}, more recent edition: \url{brill.com/view/title/12056?lang=en}
+
+\hi Melanchthon, Philipp, \emph{Historia de Vita Martini Lutheri:} \url{books.google.com/books?id=TrNSAAAAcAAJ&pg=PP9}
+
+\hi de Montenay, Georgette, \emph{Emblematum Christianorum Centuria:} \url{books.google.com/books?id=UyBRAAAAcAAJ&pg=PA1}
+
+\hi\dashes polyglot edition: \url{archive.org/details/monumentaemblema00mont/page/34}
+
+\hi Morata, Olympia Fulvia, \emph{Opera Omnia:} \url{books.google.com/books?id=11pYAAAAYAAJ&pg=PP27}
+
+%\hi Oporinus, Johannes, ed., \emph{Dramata Sacra:} \url{books.google.com/books?id=V2VdAAAAcAAJ&pg=PP18}
+
+\hi Owen, John, \emph{Epigrammata:} \url{books.google.com/books?id=CK9ZAAAAcAAJ&pg=PA5}
+
+\hi Alexander Ross, \emph{Christias:} \url{books.google.com/books?id=PeApAAAAYAAJ&pg=PA10-IA1}
+\hi\dashes alternate edition, higher scan quality at some points: \url{books.google.com/books?id=ysFeAAAAcAAJ&pg=PP24}
+
+\hi\dash \emph{Three Decads of Divine Meditations:} \url{quod.lib.umich.edu/e/eebo/A11063.0001.001?rgn=main;view=fulltext}
+
+\hi\dash \emph{Rerum Iudaicarum ab exitu ex Aegypto Libri Tres:} \url{books.google.com/books?id=p1cUWDW1uwkC&pg=PP392}
+
+\hi van Schurman, Anna Maria, \emph{Opuscula Hebraea, Graeca, Latina, Gallica:} \href{https://books.google.com/books?id=phBKAAAAcAAJ&pg=PA57}{books.google.com/books?id=phBKAAAAcAAJ\allowbreak\&pg=PA57}%\par
+
+%\clearpage
+%\vspace*{.8em}\vspace*{-2em}
+%\vspace*{1.5em}
+%\hypertarget{Prose Fiction-texts}{}
+
+\end{en}
+\end{singlespace}
+
+\vspace*{\fill}
+\ornament{ot-trumpet.jpg}{0.5}
+\vspace*{\fill}
+
+\end{document}

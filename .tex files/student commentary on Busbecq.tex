@@ -1,0 +1,217 @@
+\documentclass[12pt]{article}
+\usepackage[total={6.5in, 9in}]{geometry}
+\usepackage{graphicx}
+\usepackage{polyglossia,fontspec,xunicode}
+\usepackage{libertine}
+\setmainlanguage{latin}
+\usepackage[series={A,B,C},noend,noeledsec,noledgroup]{reledmac}
+\usepackage[]{setspace}
+\AtBeginDocument{\doublespacing}
+\usepackage{url}
+\urlstyle{same}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhead[C]{IN BUSBEQUII TERTIAM EPISTULAM TURCICAM}
+\fancyhead[R]{}
+\renewcommand{\headrulewidth}{0pt}
+\usepackage[labelformat=empty]{caption}
+\usepackage{afterpage}
+\newcommand\blankpage{%
+	\null
+	\thispagestyle{empty}%
+	\addtocounter{page}{-1}%
+	\newpage}
+
+% TOC and section title options
+\usepackage{tocloft}
+\renewcommand{\cfttoctitlefont}{\large\centering}
+\usepackage{titletoc, titlesec}
+\titleformat{\section}{\normalsize\centering}{}{0em}{\hspace*{-1em}}
+\titlecontents{section}[0em]{\hangindent1.5em\vspace{0.6em}\normalfont\relax}{\contentslabel[\relax]{0em}}{}{\hfill\contentspage}
+%\addto\captionslatin{\renewcommand{\figurename}{Imago}}
+
+% footnotes
+\Xarrangement[A]{paragraph}
+\Xarrangement[B]{twocol}
+\Xcolalign{\justifying}
+\makeatletter
+	\Xbhooknote{\setstretch {\setspace@singlespace}}
+	\Xbhookgroup{\setstretch {\setspace@singlespace} \setlength{\parindent}{0pt}}
+\makeatother
+
+\Xbeforenotes[A]{15pt}
+\Xbeforenotes[B]{10pt}
+\Xbeforenotes[C]{9pt}
+\Xafterrule[A]{5pt}
+\Xafterrule[B]{4pt}
+\Xafterrule[C]{4pt}
+\Xmaxhnotes[A]{.9\textheight}
+\Xmaxhnotes[B]{.9\textheight}
+\Xmaxhnotes[C]{.9\textheight}
+\newcommand{\myindent}{\hspace*{12pt}}
+
+% bold lemmata
+\Xlemmadisablefontselection[A]
+\Xlemmafont[A]{\bfseries}
+\Xlemmadisablefontselection[B]
+\Xlemmafont[B]{\bfseries}
+\Xlemmadisablefontselection[C]
+\Xlemmafont[C]{\bfseries}
+
+
+%---------------------------------------------------
+%                      DOCUMENT
+%---------------------------------------------------
+
+% TITLE PAGE
+\newcommand*{\titlepg}{\begingroup
+	\centering
+	\pagenumbering{gobble}
+	\thispagestyle{empty}
+	\vspace*{3\baselineskip}
+	
+	\rule{\textwidth}{1.6pt}\vspace*{-\baselineskip}\vspace*{2pt}
+	\rule{\textwidth}{0.4pt}\\[\baselineskip]
+	
+	{\Large EXCERPTUM EX AUGERII BUSBEQUII\\[0.6\baselineskip] \Huge EPISTOLIS TURCICIS\\[0.9\baselineskip] \large VIZ. EX TERTIA EPISTULA SUMPTUM\\[0.3\baselineskip] \normalsize QUOD TRACTAT BUSBEQUII DIFFICULTATEM IN SULEIMANNO SPECTANDO}\\[0.6\baselineskip]
+	
+	\rule{\textwidth}{0.4pt}\vspace*{-\baselineskip}\vspace{3.2pt}
+	\rule{\textwidth}{1.4pt}\\
+	\vspace*{3\baselineskip}
+	
+	\scshape
+	Quod excerptum discipulis et linguae Latinae\\et rerum gestarum studiosis destinatum\\annotationibus et grammaticis et historicis instruxit\\[\baselineskip]
+	{\Large PHILIPPUS VOGEL\par}
+	\vspace*{2\baselineskip}
+	Quem monuit\\[\baselineskip]
+	%Multisque de corrigendis certiorem fecit\\[\baselineskip]
+	{\Large MILENA MINKOVA\par}
+	\vfill 
+	
+	\setlength{\fboxsep}{2pt}
+	\setlength{\fboxrule}{1pt}
+	\fbox{\includegraphics[width=1.7cm]{InstitutumLogo.png}}\\[0.5\baselineskip]
+	{\itshape apud Institutum Studiis Latinis Provehendis\par}
+	\vspace*{2\baselineskip}
+	\LARGE Lexingtoniae\\[0.3\baselineskip]
+	\large anno MMXVI editum.
+	\clearpage
+\endgroup}
+
+% BIBLIOGRAPHY
+\newcommand*{\bibpg}{\begingroup
+	\clearpage
+	\normalsize
+	\section[CONSPECTUS FONTIUM]{\large CONSPECTUS FONTIUM SECUNDARIORUM}
+	\begin{list}{}{
+			\setlength{\topsep}{0pt}
+			\setlength{\leftmargin}{0.2in}
+			\setlength{\listparindent}{-0.2in}
+			\setlength{\itemindent}{-0.2in}
+			\setlength{\parsep}{\parskip}
+		}
+		\item[]
+		Barletius, Marinus. \textit{De obsidione Scodrensi.} Venetii: 1504. <\url{https://books.google.com/books?id=R7BhAAAAcAAJ}>
+		\item[]
+		Heylyn, Peter. \textit{ΜΙΚΡΌΚΟΣΜΟΣ: A Little Description of the Great World.} Secunda editio. Oxonii: 1625. <\url{http://quod.lib.umich.edu/e/eebo/A03149.0001.001?rgn=main;view=fulltext}> (Prima editio anno 1621\textsuperscript{o} edita.)
+	\end{list}
+	\vspace*{\baselineskip}
+	\begin{center}
+		{\large EDITIONES BUSBEQUII EPISTULARUM}\\
+		\textit{et vincula quae ad primam paginam huius loci excerpti ducunt.}
+	\end{center}
+	\begin{list}{}{
+			\setlength{\topsep}{0pt}
+			\setlength{\leftmargin}{0.2in}
+			\setlength{\listparindent}{-0.2in}
+			\setlength{\itemindent}{-0.2in}
+			\setlength{\parsep}{\parskip}
+		}
+		\item[]
+		1589, Parisiis: <\url{https://books.google.com/books?id=h-0RQQ04umEC&pg=101}>
+		\item[]
+		1595, Parisiis: <\url{https://books.google.com/books?id=yU0NQsO6PZkC&pg=103}>
+		\item[]
+		1595, Francofurti: <\url{https://books.google.com/books?id=6nziwIJL6w0C&pg=PA192}>
+		\item[]
+		1629, Hanoviae: <\url{https://books.google.com/books?id=F8VjAAAAcAAJ&pg=PA181}>
+		\item[]
+		1740, Basileae: <\url{https://books.google.com/books?id=Uvo51PGCq0gC&pg=PA226}>
+	\end{list}
+	\vspace*{\baselineskip}
+	\begin{center}
+		{\large FONTES IMAGINUM}
+	\end{center}
+	\begin{list}{}{
+			\setlength{\topsep}{0pt}
+			\setlength{\leftmargin}{0.2in}
+			\setlength{\listparindent}{-0.2in}
+			\setlength{\itemindent}{-0.2in}
+			\setlength{\parsep}{\parskip}
+		}
+		\item[]
+		Gianizarus a Gentile Bellini delineatus: <https://en.wikipedia.org/wiki/File:Yenieri-aturkishjanissary-gentilebellini.jpg>
+		\item[]
+		Gianizari in Codice Vindobonensi 8682 depicti: <\url{https://en.wikipedia.org/wiki/File:Battle_of_Vienna.SultanMurads_with_janissaries.jpg}> as plures eiusdem generis picturas ex hoc codice sumptas: <\url{http://www.warfare.altervista.org/Ottoman/Album/Codex_Vindobonensis.htm}>
+		\item[]
+		Suleimannus imperator a Melchior Lorck delineatus: <\url{https://commons.wikimedia.org/wiki/File:Suleiman_the_magnificent.jpg}>
+	\end{list}
+\endgroup}
+
+
+
+\begin{document}
+	{\setstretch{1.0}
+		\afterpage{\blankpage}
+		\titlepg
+	}
+	\thispagestyle{plain}
+	\section[EX BUSBEQUII TERTIA EPISTULA TURCICA.]{\large EX BUSBEQUII TERTIA EPISTULA TURCICA.}
+	\pagenumbering{arabic}
+	\vspace{-.4cm}\begin{center}{\small\textit{Busbequius narrat hunc casum qui sibi Constantinopoli inter annum 1555\textsuperscript{um} et 1562\textsuperscript{um} legato accidit.}}\end{center}\vspace{-.5cm}
+	\beginnumbering
+	\pstart
+	\noindent
+	Cum satis constaret \edtext{in procinctu}{\Afootnote{paratum ad pugnam.}} esse \edtext{principem}{\Bfootnote{Busbequius \textit{principem} pro \textit{imperatore} vel \textit{Sultano} dicit. Suleimannus (1494–1596, regn. 1520–1566) erat illo tempore Turcarum imperator, quem Melchior Lorck artifex Danicus, in eadem legatione atque Busbequius Constantinopolin missus, in opere lignario infra descripto delineavit. Eius aspectus hac in imagine trux convenit cum Busbequii descriptione in tertia \textit{Epistola Turcica} inventa: "fronte severa et contracta, ut iratum scires" (p. 231 in editione Basileae edita). \newline\begin{center}\vspace{-5pt}\includegraphics[width=6cm]{busbequius/Suleiman.jpg}\\\end{center}
+	\vspace{-5pt}Anno 1559\textsuperscript{o} Suleimannus Selimum filium suum ex uxore dilectissima Roxolana genitum contra fratrem Baiazetem pugnantem adiuvit. Baiazet victus est eodem anno a Selimi exercitu prope Iconium, quae urbs est in Asia sita. Sed num Suleimannus ipse in hoc proelio adfuerit, non perspicitur.}} ut \edtext{mare}{\Bfootnote{Hoc mare fortasse Propontis erat, nam exercitus in Asiam ibat.}} transiret iamque et dies \edtext{praefinitus}{\Afootnote{in antecessum constitutus.}} esset, denuntio meo \edtext{Chiauso}{\Bfootnote{"Budam venienti pauci Turcae ex eo genere, quos Chiausos vocant, obviam fuerunt. Hi vicem accensorum apparitorumque implent, et mandata pleraque omnia seu principis Turcarum seu Bassarum ferunt. Estque in primis honorificum apud eam gentem officium" (Busbequii \textit{Epistola Turcica} prima, p. 11 in editione Basileae edita). Heylyn asseverat Chiausos partem legati et iudicis egisse, Bassas esse duces equitum, et ambo ex gentibus Christianis sumptos esse eodem modo atque Gianizari: vide excerptum ex Heylyn infra in Supplemento descriptum.}} me velle videre \edtext{discedentem}{\Afootnote{sc. Suleimannum.}}: \edtext{veniret}{\Afootnote{iussus in oratione obliqua Chiauso datus.}} eo die bene mane, ut mihi \edtext{fores recluderet}{\Afootnote{i.e. ianuam aperiret. Verbum quod est \textit{fores} significat "janua exterior aedium, et saepius valvae ipsius" (Forcellini), quorum prima significatio hic adhibetur. Huius generis ianua sane constat ex duabus valvis, quorum alterutra est compages ex tabulis confecta quae circum cardinem volvitur.}}. Nam claves vesperi secum asportabat. Benigne pollicetur. \edtext{Do praeterea negotium \edtext{Gianizaris}{\Bfootnote{Gianizari erant quasi milites praetoriani Turcarum. Indicia quae hic ostenduntur sumpta sunt ex Supplemento huic libello affixo, ubi Gianizarorum descriptiones imaginesque praebentur. Commercia inter Gianizaros et imperatores hoc tempore (sc. medio saeculo 16\textsuperscript{o}) non fuisse bona coniectare possumus ex illorum audacia, quam Busbequius testatur cum scripserit "Hi tamen illi sunt Gianizari, qui tantum terroris secum quocumque circumferunt," quamque Heylyn asseverat: "when once they are honoured with the title of Ianizaries, they grow by degrees into an intollerable pride and haughtinesse." Certo certius tamen haec commercia iamdiu mala patent ex aliis indiciis a Heylyn prolatis: dicit Turcas, potentiores sane, duces Gianizarorum nimis in honore a suis habitos occidisse; Gianizaros contra Suleimannum magnam seditionem fecisse; eos multa facinora in interregnis patravisse, e.g. Bassas et alios potentiores non sibi faventes occidisse; Baiazetem illius nominis secundum (regn. 1481–1512) eos ad unum necare voluisse, Constantini exemplum secutum; et inde ab illo tempore, cum dolus recidisset in auctorem, imperatores non ausos esse aperte Gianizaros punire. His indiciis freti, intellegere possumus cur Gianizari hoc in loco videantur Busbequio amiciores quam imperatori et Bassis, et cur illum adiuverint horum impedimenta superare.}} et interpretibus meis}{\lemma{Do praeterea negotium \dots\ meis}\Afootnote{i.e. eos iubeo.}} ut mihi \edtext{coenaculum}{\Afootnote{parvum conclave in secundo tabulato sub aedificii tecto situm.}} conducant viae imminens, qua princeps excessurus erat. Illi mandata exsequuntur. Ubi dies venit, evigilo \edtext{tempore antelucano}{\Afootnote{i.e. ante solis ortum.}} Chiausumque \edtext{ad}{\Afootnote{iuxta.}} fores exspecto ut aperiat; sed ille etiam atque etiam iam moratur. Mitto complures qui arcessant, modo Gianizaros, qui \edtext{pro foribus cubare solent}{\Bfootnote{Qui mos confirmatur a Barletio: vide locum supra descriptum.}}, modo interpretes meos, qui foris astabant, ut intromitterentur. Atque haec omnia per valvarum rimas, quibus illae iam veteres \edtext{fatiscunt}{\Afootnote{\textit{fatisco} vel \textit{fatiscor:} "findor, aperior, hisco, viribus fractis deficio, ita ut solvar" (Forcellini).}}. Chiausus \edtext{alias ex aliis}{\Afootnote{"Hinc et per ellipsin \textit{aliud ex alio} vel \textit{aliud post aliud} significat unam rem post aliam" (Forcellini).}} moras fingere et \edtext{modo iam iamque se venturum dicere, modo}{\lemma{modo \dots\ modo}\Afootnote{nunc \dots\ nunc.}} aliquid sibi \edtext{praevertendum}{\Afootnote{\textit{praeverto:} "anteponere, praeferre" (Forcellini); \textit{praevertendum} hic est idem atque \textit{primum faciendum}.}}. Dum haec aguntur, abeunt horae, donec fragor auditur \edtext{sclopetorum}{\Afootnote{\textit{sclopetum:} "tormentum bellicum manuale" (DuCange).}}, quo Gianizari ascendentem in equum principem salutabant. Hic \edtext{meum iecur \edtext{urere}{\Afootnote{infinitivus historicus.}} bilis}{\Afootnote{i.e. ira affectus sum; sumptum ex Horatio (Sat. I.9.66).}}. Video mihi illudi. Movet dolor meus et iusta indignatio ipsos quoque Gianizaros. Admonent, si mei intus magna vi conitantur, se foris adiutantibus laxatas vetustate valvas ita posse impelli, ut \edtext{excussis obicibus}{\Afootnote{fractis impedimentis (sc. claustris).}} aperiantur. Placet consilium. Illae \edtext{dant exitum}{\Afootnote{facultatem exeundi praebent.}} validius impulsae. \edtext{Effundimur}{\Afootnote{\textit{effundere se} vel \textit{effundi} dicuntur homines et aliquando etiam res, qui fluminis more seu turmatim alicunde exeunt et aliquem in locum concurrunt" (Forcellini).}} ad domum, ubi coenaculum conduci iusseram. \edtext{Animus fuerat Chiauso}{\Afootnote{Chiausus voluit et conatus est.}} me frustrari, homini tamen non malo. Nam cum mea desideria ad \edtext{Bassas}{\Afootnote{Nobiles Turcae. Vide plura indicia in annotatiuncula sub verbo quod est \textit{Chiauso} posita.}} detulisset, non placuerat suum principem contra filium exiguas copias ducentem spectaculo esse homini Christiano. Eo suaserant ut me benigne pollicendo differretur, donec imperator navem conscendisset, tum comminisceretur \edtext{aliquid, quo se mihi purgaret}{\Afootnote{i.e. excusationem qua se mihi insontem ostenderet.}}, sed \edtext{dolus recidit in auctorem}{\Afootnote{Erasmi adagium 3588\textsuperscript{um} est huic locutioni proximum: "\textit{In tuum ipsius caput:} Quoties  in  auctorem  mali  malum retorquetur aut recidit, Graeci dicunt \dots\ "}}.
+	\pend
+	\endnumbering
+	
+	% APPENDICES (SUPPLEMENTA)
+	\clearpage
+	{\setstretch{1.0}\small
+		\section{SUPPLEMENTUM: DESCRIPTIONES GIANIZARORUM}
+		\textit{Animadverte mutationem morum Gianizarorum quae videtur esse facta inter finem saeculi 15\textsuperscript{i} et initium saeculi 17\textsuperscript{i}: nempe ex virtute in luxuriam, ex fidelitate erga imperatorem in saevam licentiam. Ex indiciis tamen a Heylyn profertis patet eos mala commercia cum imperatoribus habuisse multo ante Suleimanni tempus.}\\
+		
+		\noindent\textbf{[Ex Marini Barletii opere \textit{De obsidione Scondrensi} anno 1504\textsuperscript{o} edito, pp. 102-104, ubi Gianizari urbem Scodram anno 1478\textsuperscript{o} obsidentes describuntur.]} "Decimo septimo vero Kalendi Iulias maximus quidem numerus satellitum ex cohorte principis Turcarum in castra pervenit: qui lingua vernacula Ianizari uocantur: sunt autem huiusmodi viri Christiani omnes ex parentum complexu rapti: nam quum tot civitates atqui loca Christianorum imperio Ottomani subiecta atque obnoxia sint, singulis quibusque annis praeter caeteras rapinas atque intolerando tributo ei etiam tot pueros tradere coguntur: quos Ottomanus in minorem Asiam transmittens, diversis praeceptoribus armorum et belli peritis coalendos erudiendosque usque ad pubertatem commitit: ubi ad varios usus vitae se praecipue militae assidue exercentur: nec fere ullam temporis horam vacationem et quietem habent. Sed aspera quaeque et ardua ac fere intolerabilia perpeti conantur, ut somnum etiam sub divo capere cogant ad tolerandos quoscumque labores. Qui postquam ita assuefacti ad pubertatem venerunt, Princeps eos ad se advocat: quos per tiennium alia longe graviora asperioraque subire compellit: nec his quidem fessis otium aliquod remittit. Somnum etiam parcissimum nec nisi sub divo permittit: nonnumquam etiam noctes insomnes eos ducere iubet. Peracto triennio illos in cohortem suam (ut vulgo aiunt) familiam legit: certum ac quotidianum stipendium singulis quibusque eorum decernit, et indies pro meritis unicuique stipendia et premia auget. Apellantur enim filii magni principis, cuius lateri semper adhaerent ac ei pro muro et munimento sunt, ipsumque quoscumque sequuntur: in his omnis spes, omnis salus est: in quorum virtute summa res Ottomani sita est: nam quum ad bellum proficiscitur, ei adsunt: ab eo nunquam discedunt: illum continua custodia munitioneque coronant vallantque. Et quum res ad eos devenerit, iam ad triarios (ut in proverbiis est) et ad summum discrimen perventum esse fertur: Qui quidem bellicosissimi sunt atque strenuissimi: et in omnibus periculis fidissimi vitam intrepide exponunt, nam in armis semper crescunt, exercentur, et versant: et difficillima semper (hoc enim longa assiduaque exercitatio facit) atque asperrima quaeque perferunt. Sin vero civitas expugnanda fuerit, hi sunt primi qui eam aggrediuntur, muros ascendunt expugnantque. Et demum quicquid strenui praeclarive sit, ab his et per eos gestum esse existimatur."
+		
+		\vskip 12pt
+		
+		\noindent\textbf{[Ex Busbequii prima \textit{Epistola Turcica} (pp. 12-14 in editione Basileae edita). Monachi aspectus Gianizaris tributus patet in delineatione infra descripta a Bellini facta.]} "Budae primum mihi visi sunt Gianizari. sic Turcae praetorianum peditem vocant. Eorum, cum plenissimus est numerus, rex Turcarum habet XII millia per omnes fere eius imperii fines, vel praesidio munitionibus adversus hostem vel tutelae Christianis Iudaeisque adversus iniurias multitudinis futuri, sparguntur. Neque ullus est paulo frequentior pagus, municipium, oppidumve in quo non sint aliquot Gianizari, qui Christianos et Iudaeos reliquosque opis indigos ab improborum petulantia defendant. Budae in arce perpetuum Gianizarorum praesidium est. Vestitu utuntur ad talos demisso: capitis tegmen habent ex paenulae manica (nam inde, ut ipsi memorant, duxit originem) cuius parti caput insertum sit, pars retro propendens cervicem verberet. A fronte surgit oblongus argenteus conus deauratus gemmisque elaboratus, sed vulgaribus. Hi Gianizari fere bini ad me veniebant. \dots\ Ibi summa cum modestia compositis ante sinum manibus terramque intuentes taciti adstabant: magis ut in iis monachos nostros agnoscas, quam milites. \dots\ Et sane ni Gianizaros esse praemonitus fuissem, monachorum Turcicorum genus aliquod aut collegii nescio cuius sodales esse facile credidisem. Hi tamen illi sunt Gianizari, qui tantum terroris secum quocumque circumferunt. Erant Budae frequentes mecum in cena Turcae, vini dulcedine illecti. Cuius quo minorem habent copiam, eo sunt avidiores, eoque largius se ingurgitant, ubi semel contigerit habere, in multam noctem fiebant invitationes. \dots\ Illi ante potandi finem non faciebant, quam mero sopiti humi sternerentur."
+		
+		\vskip 12pt
+		
+		\noindent\textbf{[Ex Busbequii tertia \textit{Epistola Turcica} (pp. 230-231 in editione Basileae edita). Pinnae hic memoratae conspiciuntur in altera imagine infra descripta.]} "Equitatu iam praetervecto excipiebat longum Gianizarorum agmen, raro aliis armis quam suis sclopetis instructorum. Omnibus ferme eadem vestitus forma et color, et eiusdem domini servitium et veluti familiam agnosceres. Nullum ibi enormis vestitus prodigium, nihil concisum aut perforatum. Satis sibi cito vestes atteri dicunt, etiamsi non scindant. In pinnis modo et cristis similique ornatu militari luxuriant vel insaniunt verius, praesertim in novissimo agmine veterani. Pinnarum, quas frontalibus insertas habent, silvam credas ambulare."
+		
+		\vskip 12pt
+		
+		\noindent\textbf{[Ex opere cui titulus \textit{ΜΙΚΡΟΚΟΣΜΟΣ: A Little Description of the Great World} a Peter Heylyn anno 1621\textsuperscript{o} conscripto, pp. 597-598, 606.]} "But the nerues and sinewes of this warlike body are the Ianizaries, who by originall being Christians, are chosen by the Turkish officers euery fiue yeares, out of his Europaean dominions: and so distributed abroad to learne the language, customes \& religion of the Turks: afterward according to their strength, will, or disposition, placed in diuers chambers. They of the first Chamber, are preferred some to bee Chiausies, such as goe on Embassies, and execute iudgements: others to be Sansiaks, or Gouernours of Citties, some to bee Bassa's, or commanders of Horsemen, and others to be Beglerbigs (id est, Lord of Lords) to command the rest in generall. They of the other Chambers are the Ianizaries, or Praetorian Souldiers of his Guard, to whose faith and trust the care of the Emperours person is committed. The tithing of these young spring alls is, as we haue said euery fift yeare, and oftner sometimes as his occasions serue. By which meanes he not only disarmeth his owne subiects, \& keepeth them from attempting any stirre or innouation in his Empire:but spoileth also the Prouinces hee most feareth of the flower, sinewes, and strength of their people; choice being made of the strongest youthes only, \& fittest for warre. These, before they are inrolled in pay, are called Azamoglans, \& behaue themselues with much submissenesse toward their Seniours and Governours: but when once they are honoured with the title of Ianizaries, they grow by degrees into an intollerable pride and haughtinesse, Till of late, they were not permitted to marry; neither now can any of their sonnes be accounted any other the a naturall Turke (whom of all people they account the basest) the eldest only excepted; to whom this prerogatiue was granted by Amurath the 3d when he came to the Crowne. They are in number 40000, of which 16000 are alwaies resident in Constantinople. In this Citty they are diuersly imployed, being as Constables to see the peace kept; as Clarks of the market to see to the weights and measures; as Officers to arrest common offenders; as Warders to looke to the gates; to guard the houses of Embassadours; and to trauell with strangers for their more safety; in which charge they are very faithfull. Their pay is but fiue Aspers a day, and two gownes yearely; neither are their hopes great, the command of 10, 20, or 100 men being their greatest preferment: yet are they very obsequious to their captaine or Aga; who is in autority inferiour to the meanest Bassa, though in power perhaps aboue the chiefest. For the crafty Turkes ioyne not power and authority together and if they obserue the Ianizaries to loue and respect their Aga too much, they quickly depriue him of life and office. The founder of this order was Amurath the first, Ano. 1365; their greatest establisher Amurath the 2d; their name signifieth young Souldiers. Now concerning these Ianizaries, we will farther consider the sway they beare in designing the successour: 2ly their insolency toward their Emperours and his Officers. 3ly Their behauiour in the vacancy of the throne: and 4ly their punishments. \textit{<Heylyn tunc describit primum vim a Gianizaris adhibitam in imperatoribus eligendis, secundum eorum cum imperatoribus discordiam, inter quem indicem Suleimannum memorat ('Against Solyman they mutined so violently, that they compelled him to displace Rustan his chiefe Bassa and fauorite'), tertium eorum facinora in interregnis patrata, et tandem quomodo principes eos punire soliti sint. Ex quorum ultimis duabus partibus hic excerpta ostenduntur, quo apertius mala commercia inter Gianizaros et principes habita pateat.>} \dots\ 3. Now for the third. I finde it to haue beene the custome of these Ianizaries, betweene the death of an old Emperour, \& the beginning of the new; to commit diuerse enormities: as the rifling of the houses of the Iewes, and Christians, among whom they dwelt; the murdering of the Bassa's, and principall men about the Court, whom they suspected not to haue fauoured them; and a number of the like outragious insolencies; for of these we finde frequent mention: as after the death of Amurath the 2d, and Mahomet the great, this last time the Marchants of Constantinople being naturall Turkes, scaped not their rauenous hands, neither could Mahomet Bassa avoid the fury of their swords. \dots\ 4. As for the last. These insolent \& vnsufferable pranks committed so commonly by these masterfull slaues, so exceedingly stomached Baiazet the 2d, that he secretly purposed with himselfe, for curing so dangerous a disease, to vse, a desperate remedy: which was to kill and destroy suddenly all the Ianizaries. It is like that this Baiazet being a Scholler, had read how Constantine the great had cassed the Praetorian Souldiers, \& destroied their Campe, as men that were the causes of all the stirs in his Empire, and whose pride was come to an intollerable heighth: and hauing the same cause to destroy his Ianizaries, hoped to produce on them the same effect. But they hauing notice of the plot, for the time continued so vnited and linked together, that he durst not then attempt it; and they afterward siding with his sonne Selimus, cast him out of his throne into his graue. Since which time the Emperors neuer durst punish them openly, but when any of them proueth delinquent, hee is sent priuily in the night to Pera; where by the way he is drowned, and a peece of Ordinance shot off, to signifie the performing of the Sultans command. \textit{<Tandem (p. 606) Gianizarorum luxuriam inter causas cur Turcarum imperium enervetur numerat, quam luxuriam iam tempore Busbequii irrepsisse manifestum est ex eius de cena vinosa narratione.>} \dots\ Concerning the present state of the Empire, many iudge it to be rather in the wane, then the increase; which iudgement they ground vpon good reasons; \dots\ that the Ianizaries who haue beene accounted the principall strength of this Empire, are growne more factious in the Court, then valiant in the camp; corrupted with ease \& liberty, drowned in prohibited wines, enseebled with the continuall converse with women, and fallen from their former ancestry of discipline."
+		
+		\vskip 12pt
+		
+		\begin{figure}[h]
+			\centering
+			\begin{minipage}[b]{0.46\textwidth}
+				\includegraphics[width=\textwidth]{busbequius/janissary_bellini.jpg}
+				\caption*{Gianizarus a Gentile Bellini delineatus inter annum 1479\textsuperscript{um} et 1481\textsuperscript{um}.}
+			\end{minipage}
+			\hfill
+			\begin{minipage}[b]{0.46\textwidth}
+				\includegraphics[width=\textwidth]{busbequius/sultan_murads_janissaries.jpg}
+				\caption*{Gianizari nobilem comitantes, a pictore ignoto cura Bartolomei von Pezzen legati inter annum 1586\textsuperscript{um} et 1591\textsuperscript{um} depicti.}
+			\end{minipage}
+		\end{figure}
+		
+		\bibpg
+	}
+\end{document}

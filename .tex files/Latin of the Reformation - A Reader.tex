@@ -1,0 +1,144 @@
+% TO FIX
+% A footnotes wrap?
+% Latin headers part of same ¶
+
+\documentclass[14pt, twoside]{extarticle}
+\usepackage[letterpaper, top=0.7in, bottom=.8in, left=1.2in, right=1.2in, headsep=.5em]{geometry}
+\usepackage[latin,english]{babel}
+\usepackage{microtype}
+\babeltags{en = english}
+\babeltags{la = latin}
+\usepackage[newparttoc]{titlesec}
+\usepackage[dotinlabels,rightlabels]{titletoc}
+\usepackage{fontspec, lettrine, setspace, titleps, graphicx, xcolor}
+\AtBeginDocument{\onehalfspacing}
+\usepackage[series={A,B}]{reledmac}
+
+% reledmac
+\Xnotefontsize[A]{\small}
+%\Xnolemmaseparator[A]
+\Xnonumber[A]
+\Xafterrule[A]{7pt}
+%\makeatletter
+%	\Xbhooknote[A]{\vspace*{10pt}}
+%\makeatother
+\Xbeforenotes[B]{4pt}
+\Xarrangement[B]{twocol}
+\Xhsizetwocol[B]{.48\hsize}
+\Xnotefontsize[B]{\small}
+\Xlemmadisablefontselection[B] % italicized lemmata
+\Xlemmafont[B]{\itshape}
+\Xafterrule[B]{4pt}
+\Xcolalign{\justifying}
+\makeatletter
+	\Xbhooknote{\setstretch{0.9}}
+	\Xbhookgroup{\setstretch{0.9}\setlength{\parindent}{0pt}}
+\makeatother
+%\Xmaxhnotes[B]{.9\textheight}
+\newcommand{\note}[2]{\edtext{#1}{\Bfootnote{\texten{#2}}}}
+\newcommand{\notelemma}[3]{\edtext{#1}{\lemma{#3}\Bfootnote{\texten{#2}}}}
+\newcommand{\paraphrasis}[3]{\edtext{#2}{\lemma{\hspace{-0.9em}\textlf{¶} #1}\Afootnote{\textit{#3}}}}
+%\newcommand{\paraphrasiscap}[2]{\vspace*{-.5em}\edtext{#1}{\lemma{\hspace*{-0.9em}}\Afootnote{\textit{#2}}}}
+
+% fonts
+\setmainfont[ExternalLocation=_fonts/]{GoudyBookletter1911.otf}[ItalicFont=GoudyOldStyleItalic.ttf,%
+BoldFont=GoudyOldStyleExtraBold.otf,%
+ItalicFeatures={Scale=1.07}]
+\newfontfamily\GoudyOSR[ExternalLocation=_fonts/]{GoudyOldStyleRegular.ttf}
+\newfontfamily\floralcaps[Scale=8]{FloralCapitals.ttf}
+\renewcommand*{\LettrineFont}{\floralcaps}
+\newcommand{\dropcap}[2]{%
+	\lettrine[lines=4, loversize=.12, lraise=-.05]{#1}{#2}
+}
+\newcommand\textlf[1]{{\GoudyOSR#1}}
+
+% headers
+\newpagestyle{text}{
+\sethead[\thepage][\parttitle][] % even
+{}{\sectiontitle}{\thepage}} % odd
+\pagestyle{text}
+\setlength{\headsep}{0.4in}
+
+% paragraphs
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{3pt plus 2pt minus 2pt}
+\AtEveryPend{\vspace{\parskip}\vspace{-1\baselineskip}}
+\newcommand{\latinpar}[4]{\vspace{0.8em}\pstart\skipnumbering\textit{#1. #2}\\{\ifnum#1=1\vspace{-1.28em}\fi}\paraphrasis{#1}{#3}{#4\\\vspace{-0.5em}}\pend}
+
+% titles and TOC
+\titleformat{\section}[display]{\bfseries}{}{0em}{\vspace{-1.5em}}[\vspace{-1.3em}]
+
+% ornaments
+\newcommand{\ornament}[2]{%
+	\setlength{\fboxrule}{0pt}
+	\noindent
+	\makebox[\textwidth]{\fbox{\includegraphics*[width=#2\textwidth]{_img/#1}}}
+}
+\definecolor{bordergray}{gray}{0.10}
+\renewcommand\fbox{\fcolorbox{bordergray}{white}}
+
+% part pages
+\newcommand*{\partpg}[6]{\begingroup
+	\thispagestyle{empty}
+	\centering
+	\vspace*{\fill}
+	\ornament{#5-a.jpg}{#2}\\
+	\vspace{1.5em}
+	\Huge#1\\[0.3\baselineskip]
+	\LARGE(#6)\\
+	\vspace{1.3em}
+	\ornament{#5-b.jpg}{#3}
+	\vspace*{\fill}
+	\clearpage
+	\thispagestyle{empty}
+	\vspace*{\fill}
+	\centering
+	\setlength{\fboxrule}{0pt}
+	\makebox[\textwidth]{\fbox{\includegraphics*[width=#4\textwidth]{_img/#5.jpg}}}
+	\vspace*{\fill}
+	\clearpage
+\endgroup}
+
+\begin{document}
+\pagenumbering{arabic}
+\selectlanguage{latin}
+
+\partpg{John Calvin}{0.4}{0.5}{0.9}{IX}{1509–1564}
+
+\section[\textit{Institutes} I.]{Ioannis Calvini Institutionis Christianae Religionis: Liber Primus de Cognitione Dei Creatoris.}
+
+\beginnumbering
+\latinpar{1}{Duae partes scientiae nostrae, Dei ac nostri scientia, arte coniunctae sunt.}%
+{\dropcap{T}{OTA}\note{fere}{“almost, just about.”} sapientiae nostrae summa, quae vera demum ac solida sapientia censeri debeat, \note{duabus partibus}{with \textit{constat}, “of two parts.”} \note{constat}{“consists”; the subject is \textit{summa}.}, Dei cognitione et \note{nostri}{i.e. \textit{nostri cognitione}.}. \note{Ceterum}{adverb, “but, however.”} \note{cum}{conjunction, “since.”} \notelemma{multis inter se vinculis}{abl. of instrument with \textit{conexae sint}.}{multis … vinculis} \note{conexae sint}{refers to the unstated subject of the sentence, the two \textit{cognitiones}.}, \notelemma{utra tamen alteram praecedat et ex se pariat}{indirect statement, the object of \textit{discernere}.}{utra … praecedat et … pariat}, non facile est discernere. Nam primo, se nemo aspicere potest \note{quin}{“except that, without.”} ad Dei, in quo vivit et movetur, intuitum \note{sensus}{acc. plural, with \textit{suos}.} suos protinus convertat: quia minime obscurum est, dotes quibus pollemus, nequaquam a nobis esse: immo \notelemma{ne id quidem ipsum quod sumus, aliud esse quam in uno Deo subsistentiam}{a second substantive clause to be understood with \textit{minime obscurum est}.}{ne id … aliud esse quam …}. Deinde ab his bonis quae guttatim e caelo ad nos stillant, tamquam a rivulis ad fontem deducimur.}%
+{Paene tota vera scientia nostra in duas partes dividi potest: in eam partem qua Deum, et in eam qua nos ipsos cognoscimus. Quas tamen partes multae vinculae coniungunt, ergo difficile est iudicare num Dei cognitio an nostri sit prior et fons alterius. Nam primo, cum nos ipsos aspiciamus, statim et Deum, in quo vivimus et movemur, aspicimus: quia facile est videre facultates nostras non a nobis ipsis, sed ab alio quodam provenire: immo facile est videre etiam exsistentiam nostram fundatum tantummodo in Deo. Haec itaque beneficia paulatim e caelo ad nos venientia, si ea sequamur, ducunt nos quasi a rivulis ad fontem, i.e. ad bonis terrenis ad Deum ipsum.}
+\endnumbering
+
+% ==========================================
+
+%			PETER MARTYR VERMIGLI
+
+% ==========================================
+
+\clearpage
+\partpg{Peter Martyr Vermigli}{0.55}{0.65}{0.8}{V}{1499–1562}
+\newpagestyle{textv}{% delete after real parts
+\sethead[\thepage][\sectiontitle][] % even
+{}{Peter Martyr Vermigli}{\thepage}} % odd
+\pagestyle{textv}
+
+\section[Simler’s \textit{Vita Vermilii}]{Oratio de Vita et Obitu Clarissimi Viri et Praestantissimi Theologi Domini Petri Martyris Vermilii, habita a Iosia Simlero Tigurino}
+
+\beginnumbering
+\latinpar{1}{Vermilius ex Italia profectus Tiguro commoratur, ubi munus non invenit.}%
+{\dropcap{I}{N}hoc itinere cum \note{Tigurum}{acc. of place to which. Zürich in Latin is called \textit{Turicum}, or sometimes in modern Latin \textit{Tigurum}.} venisset, humaniter exceptus a Bullingero, Pellicano, \note{Gualthero}{Rudolf Gwalther (1519-1586) worked alongside Bullinger and in 1575 succeeded him as the head of the Zürich church.} et ceteris ecclesiae atque scholae nostrae ministris, suam illis operam obtulit, si ea uti placeret. Verum quia nullus locus in schola eo tempore vacabat, ostenderunt se, \note{quod}{relative pronoun referring to the subsequent \textit{eius opera uti}, i.e. “although they wanted to employ him, …”} maxime vellent, hoc tempore eius opera uti non posse, attamen voluntatis eius se grato animo memores fore.}%
+{Vermilius dum exsul iter ex patria faciebat, Tigurum advenit, ubi Bullingerus, Pellicanus, Gualtherus, et ceteri ecclesiae et scholae nostrae rectores benigne ei hospitium praebuerunt. Tum Vermilius eis dixit se Tiguro munere fungi velle, si eis placeret. Sed nullum erat munus vacuum in schola eo tempore, ergo rectores responderunt se maxime velle sed non posse eius opera uti, at fore ut meminissent eius voluntatem, gratias ei habentes.}
+
+\latinpar{2}{Vermilius Tiguro delectatus, illuc post multos annos redit.}%
+{Referebat aliquando, si huius profectionis mentio facta fuisset, se cum primum Tigurum venisset, multum et tum et deinceps semper eam urbem amasse, ac optasse hanc esse certum et firmum exsilii sui hospitium: cuius \notelemma{voti post compos}{\textit{voti compos fieri:} to obtain a wish.}{voti … compos} factus est, quamvis prius divinae providentiae \note{visum fuerit}{\textit{visum esse} + dat.: to seem good or fit (to someone).}, eum tamquam legatum Iesu Christi ad varias urbes et gentes mittere, ut tandem Deo ita procurante Tigurum rediret, et in ea urbe non longe ab Italiae finibus, post longas et difficiles peregrinationes conquiesceret.}%
+{Nonnumquam audivi, multis annis postea, Vermilium dicentem se Tigurum amavisse inde ab eo tempore quo illuc primum venisset, ac se velle in hac urbe habitare. Postea vero hoc domicilium adeptus est, quamquam Deus prius voluit eum tamquam legatum Iesu Christi ad varias urbes et gentes mittere, ut tandem Deo duce Tugurum reveniret, ubi prope Italiam post diuturnas et laboriosas peregrinationes conquiesceret.}
+
+\latinpar{3}{Argentinam pervenit, ibique adeo dilucide docere incipit, ut Bucerum superet.}%
+{\note{Tiguro}{abl. of place from which.} igitur tum discedens Basileam venit, et cum illic mense uno fuisset, \note{Argentinam}{acc. of place to which. Strasbourg in Latin is called \textit{Argentorātum}, \textit{Argentorātus}, or sometimes in modern Latin \textit{Argentīna}.} una cum \note{Paulo Lacisio}{Paul Lacisius was a friend of Vermigli who fled with him from Lucca to Germany.} vocatus est, id procurante viro optimo et doctissimo Martino Bucero, atque \note{ipsi}{i.e. to Vermigli.} quidem sacrarum litterarum, Lacisio autem Graecae linguae \note{professio}{“teaching.”} demandata est. … \note{In universa autem tractatione}{“And in all his treatment {[}of the Scriptures{]}.”} duo praeterea afferebat, quae cum maxime in docendo necessaria sint, \notelemma{methodus exacta, deinde oratio pura et dilucida}{The naming of Vermigli’s two special skills is parenthetical, so that the previous subordinate clause (\textit{cum … necessaria sint}) is followed by the main clause \textit{sic in his excellebat} (itself followed by a subordinate \textit{ut} clause.}{methodus … dilucida}, sic in his excellebat, ut Bucerum non modo aequare, verum etiam \note{omnium iudicio}{“in the judgment of everyone.”} superare videretur.}%
+{Postquam Tiguro discessit, Basileam venit, ubi unum mensem mansit. Tum Martinus Bucerus, vir optimus doctissimus, eum et Paulum Lacisium ad Argentinam invitavit, ubi Vermilius litteras sacras, Lacisius linguam Graecam docuit. Vermilius optimus magister litterarum sacrarum erat, duobus modis praecipue, primo methodo exacta, deinde oratione pura et perspecua, adeo ut omnes iudicarent eum non solum esse tantus magister quantus Bucerus, sed etiam Bucero melior.}
+\endnumbering
+\end{document}
